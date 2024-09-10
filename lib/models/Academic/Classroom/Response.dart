@@ -9,10 +9,10 @@ class QuestionResponse {
 
   QuestionResponse(
       {required this.text,
-      required this.id,
-      required this.userId,
-      required this.isAnswered,
-      required this.dateTime,
-      required this.isRemoved,
-      required this.isInAppropriate});
+        required this.id,
+        required this.userId,
+        required this.isAnswered,
+        required this.dateTime,
+        required this.isRemoved,
+        required this.isInAppropriate});
 }

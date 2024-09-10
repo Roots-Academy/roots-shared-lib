@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
+
 class GlobalCourse {
   final String globalCourseId;
   final String courseName;
@@ -91,29 +92,29 @@ class GlobalCourse {
   bool operator ==(covariant GlobalCourse other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
-  
-    return 
+
+    return
       other.globalCourseId == globalCourseId &&
-      other.courseName == courseName &&
-      listEquals(other.globalWorkshopIds, globalWorkshopIds) &&
-      other.courseShortDescription == courseShortDescription &&
-      other.courseVideoLink == courseVideoLink &&
-      other.instructorNotesLink == instructorNotesLink &&
-      other.instructorSlidesLink == instructorSlidesLink &&
-      other.imageLink == imageLink &&
-      other.videoLink == videoLink;
+          other.courseName == courseName &&
+          listEquals(other.globalWorkshopIds, globalWorkshopIds) &&
+          other.courseShortDescription == courseShortDescription &&
+          other.courseVideoLink == courseVideoLink &&
+          other.instructorNotesLink == instructorNotesLink &&
+          other.instructorSlidesLink == instructorSlidesLink &&
+          other.imageLink == imageLink &&
+          other.videoLink == videoLink;
   }
 
   @override
   int get hashCode {
     return globalCourseId.hashCode ^
-      courseName.hashCode ^
-      globalWorkshopIds.hashCode ^
-      courseShortDescription.hashCode ^
-      courseVideoLink.hashCode ^
-      instructorNotesLink.hashCode ^
-      instructorSlidesLink.hashCode ^
-      imageLink.hashCode ^
-      videoLink.hashCode;
+    courseName.hashCode ^
+    globalWorkshopIds.hashCode ^
+    courseShortDescription.hashCode ^
+    courseVideoLink.hashCode ^
+    instructorNotesLink.hashCode ^
+    instructorSlidesLink.hashCode ^
+    imageLink.hashCode ^
+    videoLink.hashCode;
   }
 }
