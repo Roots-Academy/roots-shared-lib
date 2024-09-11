@@ -2,39 +2,34 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Review {
-  String reviewId;
+  String id;
   int numOfStars;
-  String userId;
-  String localWorkshopId;
-  String text;
+  String? text;
   String studentId;
   DateTime dateTime;
   Review({
-    required this.reviewId,
+    required this.id,
     required this.numOfStars,
-    required this.userId,
-    required this.localWorkshopId,
-    required this.text,
+    this.text,
     required this.studentId,
     required this.dateTime,
   });
 
 
 
+
+
+
   Review copyWith({
-    String? reviewId,
+    String? id,
     int? numOfStars,
-    String? userId,
-    String? localWorkshopId,
     String? text,
     String? studentId,
     DateTime? dateTime,
   }) {
     return Review(
-      reviewId: reviewId ?? this.reviewId,
+      id: id ?? this.id,
       numOfStars: numOfStars ?? this.numOfStars,
-      userId: userId ?? this.userId,
-      localWorkshopId: localWorkshopId ?? this.localWorkshopId,
       text: text ?? this.text,
       studentId: studentId ?? this.studentId,
       dateTime: dateTime ?? this.dateTime,
@@ -43,10 +38,8 @@ class Review {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'reviewId': reviewId,
+      'id': id,
       'numOfStars': numOfStars,
-      'userId': userId,
-      'localWorkshopId': localWorkshopId,
       'text': text,
       'studentId': studentId,
       'dateTime': dateTime.millisecondsSinceEpoch,
@@ -55,11 +48,9 @@ class Review {
 
   factory Review.fromMap(Map<String, dynamic> map) {
     return Review(
-      reviewId: map['reviewId'] as String,
+      id: map['id'] as String,
       numOfStars: map['numOfStars'] as int,
-      userId: map['userId'] as String,
-      localWorkshopId: map['localWorkshopId'] as String,
-      text: map['text'] as String,
+      text: map['text'] != null ? map['text'] as String : null,
       studentId: map['studentId'] as String,
       dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int),
     );
@@ -71,7 +62,7 @@ class Review {
 
   @override
   String toString() {
-    return 'Review(reviewId: $reviewId, numOfStars: $numOfStars, userId: $userId, localWorkshopId: $localWorkshopId, text: $text, studentId: $studentId, dateTime: $dateTime)';
+    return 'Review(id: $id, numOfStars: $numOfStars, text: $text, studentId: $studentId, dateTime: $dateTime)';
   }
 
   @override
@@ -79,10 +70,8 @@ class Review {
     if (identical(this, other)) return true;
   
     return 
-      other.reviewId == reviewId &&
+      other.id == id &&
       other.numOfStars == numOfStars &&
-      other.userId == userId &&
-      other.localWorkshopId == localWorkshopId &&
       other.text == text &&
       other.studentId == studentId &&
       other.dateTime == dateTime;
@@ -90,10 +79,8 @@ class Review {
 
   @override
   int get hashCode {
-    return reviewId.hashCode ^
+    return id.hashCode ^
       numOfStars.hashCode ^
-      userId.hashCode ^
-      localWorkshopId.hashCode ^
       text.hashCode ^
       studentId.hashCode ^
       dateTime.hashCode;

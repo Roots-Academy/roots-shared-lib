@@ -9,33 +9,17 @@ class LocalCourse {
   final String instructorId;
   final String campusId;
   final Map<String, String> workshopIdToLocation;
-
-  LocalCourse({
-    required this.id,
-    required this.globalCourseId,
-    required this.instructorId,
-    required this.campusId,
-    required this.workshopIdToLocation,
-  });
+  final DateTime scheduledTime;
+  LocalCourse(
+      {required this.id,
+      required this.globalCourseId,
+      required this.instructorId,
+      required this.campusId,
+      required this.workshopIdToLocation,
+      required this.scheduledTime});
 
   //students ids (in nested collection)
   //review (in nested collection)
-
-  LocalCourse copyWith({
-    String? id,
-    String? globalCourseId,
-    String? instructorId,
-    String? campusId,
-    Map<String, String>? workshopIdToLocation,
-  }) {
-    return LocalCourse(
-      id: id ?? this.id,
-      globalCourseId: globalCourseId ?? this.globalCourseId,
-      instructorId: instructorId ?? this.instructorId,
-      campusId: campusId ?? this.campusId,
-      workshopIdToLocation: workshopIdToLocation ?? this.workshopIdToLocation,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -44,6 +28,7 @@ class LocalCourse {
       'instructorId': instructorId,
       'campusId': campusId,
       'workshopIdToLocation': workshopIdToLocation,
+      'scheduledTime': scheduledTime.millisecondsSinceEpoch,
     };
   }
 
@@ -55,6 +40,7 @@ class LocalCourse {
       campusId: map['campusId'] as String,
       workshopIdToLocation: Map<String, String>.from(
           (map['workshopIdToLocation'] as Map<dynamic, dynamic>)),
+      scheduledTime: DateTime.fromMillisecondsSinceEpoch(map['scheduledTime']),
     );
   }
 

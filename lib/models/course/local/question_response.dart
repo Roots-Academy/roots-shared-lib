@@ -1,6 +1,7 @@
 class QuestionResponse {
   final String text;
   final String id;
+  final String questionId;
   final String userId;
   final bool isAnswered;
   final DateTime dateTime;
@@ -13,6 +14,7 @@ class QuestionResponse {
       required this.userId,
       required this.isAnswered,
       required this.dateTime,
+      required this.questionId,
       required this.isRemoved,
       required this.isInAppropriate});
 }
