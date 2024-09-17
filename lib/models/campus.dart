@@ -5,11 +5,9 @@ import 'package:collection/collection.dart';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Campus {
   String id;
-  List<String> instructorIds;
   String name;
   Campus({
     required this.id,
-    required this.instructorIds,
     required this.name,
   });
 
@@ -20,7 +18,6 @@ class Campus {
   }) {
     return Campus(
       id: id ?? this.id,
-      instructorIds: instructorIds ?? this.instructorIds,
       name: name ?? this.name,
     );
   }
@@ -28,7 +25,6 @@ class Campus {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'instructorIds': instructorIds,
       'name': name,
     };
   }
@@ -36,7 +32,6 @@ class Campus {
   factory Campus.fromMap(Map<String, dynamic> map) {
     return Campus(
       id: map['id'] as String,
-      instructorIds: List<String>.from((map['instructorIds'] as List<dynamic>)),
       name: map['name'] as String,
     );
   }
@@ -48,18 +43,8 @@ class Campus {
 
   @override
   String toString() =>
-      'Campus(id: $id, instructorIds: $instructorIds, name: $name)';
+      'Campus(id: $id, name: $name)';
 
   @override
-  bool operator ==(covariant Campus other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-
-    return other.id == id &&
-        listEquals(other.instructorIds, instructorIds) &&
-        other.name == name;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ instructorIds.hashCode ^ name.hashCode;
+  int get hashCode => id.hashCode  ^ name.hashCode;
 }

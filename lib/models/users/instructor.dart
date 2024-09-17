@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 import 'package:roots_shared_lib/models/users/roots_user.dart';
+enum InstructorType { contractor, volunteer }
 
 class Instructor extends RootsUser {
   final bool isActive;
@@ -14,6 +15,7 @@ class Instructor extends RootsUser {
   final String emergencyNumber;
   final String emergencyRelationship;
   final List<String> campusIds;
+  final InstructorType instructorType;
   Instructor(
       {required super.id,
       required super.fullName,
@@ -30,7 +32,7 @@ class Instructor extends RootsUser {
       required this.emergencyName,
       required this.emergencyNumber,
       required this.emergencyRelationship,
-      required this.campusIds});
+      required this.campusIds,required this.instructorType});
 
   @override
   Map<String, dynamic> toMap() {
@@ -50,7 +52,8 @@ class Instructor extends RootsUser {
       'emergencyName': emergencyName,
       'emergencyNumber': emergencyNumber,
       'emergencyRelationship': emergencyRelationship,
-      "campusIds": campusIds
+      "campusIds": campusIds,
+      "instructorType": instructorType.index
     };
   }
 
@@ -72,6 +75,7 @@ class Instructor extends RootsUser {
       emergencyNumber: map['emergencyNumber'] as String,
       emergencyRelationship: map['emergencyRelationship'] as String,
       campusIds: List<String>.from((map['campusIds'] as List<dynamic>)),
+      instructorType:InstructorType.values[map['instructorType']], 
     );
   }
 }
