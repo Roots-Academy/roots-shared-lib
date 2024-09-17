@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-enum Gender { male, female, preferNotToSay }
 
 class RootsUser {
   final String id;
@@ -11,7 +10,7 @@ class RootsUser {
   final String phoneNumber;
   final DateTime dob;
   final String homeAddress;
-  final Gender gender;
+  final bool? isMale;
   RootsUser({
     required this.id,
     required this.fullName,
@@ -20,7 +19,7 @@ class RootsUser {
     required this.phoneNumber,
     required this.dob,
     required this.homeAddress,
-    required this.gender,
+    required this.isMale,
   });
 
   // Map<String, dynamic> toMap() {
