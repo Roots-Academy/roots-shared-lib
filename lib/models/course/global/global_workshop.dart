@@ -40,7 +40,7 @@ class GlobalWorkshop {
       'instructorSlidesLink': instructorSlidesLink,
       'imageLink': imageLink,
       'studentsWhoAttendedIds': studentsWhoAttendedIds,
-      'instructorTraining': instructorTraining,
+      'instructorTraining': instructorTraining.toMap(),
     };
   }
 
