@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
+import 'package:roots_shared_lib/models/course/global/instructor_training.dart';
 
 import 'question.dart';
 
@@ -17,7 +18,7 @@ class GlobalWorkshop {
   final String instructorSlidesLink;
   final String imageLink;
   final List<String> studentsWhoAttendedIds;
-
+  final InstructorTraining instructorTraining;
   GlobalWorkshop(
       {required this.id,
       required this.name,
@@ -26,7 +27,8 @@ class GlobalWorkshop {
       required this.instructorNotesLink,
       required this.instructorSlidesLink,
       required this.imageLink,
-      required this.studentsWhoAttendedIds});
+      required this.studentsWhoAttendedIds,
+      required this.instructorTraining});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -38,6 +40,7 @@ class GlobalWorkshop {
       'instructorSlidesLink': instructorSlidesLink,
       'imageLink': imageLink,
       'studentsWhoAttendedIds': studentsWhoAttendedIds,
+      'instructorTraining': instructorTraining,
     };
   }
 
@@ -52,6 +55,7 @@ class GlobalWorkshop {
       imageLink: map['imageLink'] as String,
       studentsWhoAttendedIds:
           List<String>.from((map['studentsWhoAttendedIds'] as List<dynamic>)),
+      instructorTraining: InstructorTraining.fromMap(map['instructorTraining']),
     );
   }
 
