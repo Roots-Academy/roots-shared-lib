@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Review {
-  String id;
-  int numOfStars;
-  String? text;
-  String studentId;
-  DateTime dateTime;
+  final String id;
+  final int numOfStars;
+  final String? text;
+  final String studentId;
+  final DateTime dateTime;
   Review({
     required this.id,
     required this.numOfStars,
@@ -14,11 +13,6 @@ class Review {
     required this.studentId,
     required this.dateTime,
   });
-
-
-
-
-
 
   Review copyWith({
     String? id,
@@ -58,7 +52,8 @@ class Review {
 
   String toJson() => json.encode(toMap());
 
-  factory Review.fromJson(String source) => Review.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Review.fromJson(String source) =>
+      Review.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -68,21 +63,20 @@ class Review {
   @override
   bool operator ==(covariant Review other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.numOfStars == numOfStars &&
-      other.text == text &&
-      other.studentId == studentId &&
-      other.dateTime == dateTime;
+
+    return other.id == id &&
+        other.numOfStars == numOfStars &&
+        other.text == text &&
+        other.studentId == studentId &&
+        other.dateTime == dateTime;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      numOfStars.hashCode ^
-      text.hashCode ^
-      studentId.hashCode ^
-      dateTime.hashCode;
+        numOfStars.hashCode ^
+        text.hashCode ^
+        studentId.hashCode ^
+        dateTime.hashCode;
   }
 }
