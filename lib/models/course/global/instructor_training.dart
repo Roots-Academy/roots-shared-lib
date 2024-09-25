@@ -1,18 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:roots_shared_lib/models/helper_models/uploaded_file_data.dart';
+
 class InstructorTraining {
   final String id;
-  final String videoLink;
+  final UploadedFileData videoLink;
   InstructorTraining({
     required this.id,
     required this.videoLink,
   });
-  
+
+
 
   InstructorTraining copyWith({
     String? id,
-    String? videoLink,
+    UploadedFileData? videoLink,
   }) {
     return InstructorTraining(
       id: id ?? this.id,
@@ -23,14 +26,14 @@ class InstructorTraining {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'videoLink': videoLink,
+      'videoLink': videoLink.toMap(),
     };
   }
 
   factory InstructorTraining.fromMap(Map<String, dynamic> map) {
     return InstructorTraining(
       id: map['id'] as String,
-      videoLink: map['videoLink'] as String,
+      videoLink: UploadedFileData.fromMap(map['videoLink'] as Map<String,dynamic>),
     );
   }
 

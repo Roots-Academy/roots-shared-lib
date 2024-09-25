@@ -6,7 +6,6 @@ class RootsUser {
   final String id;
   final String fullName;
   final String email;
-  final DateTime joinDate;
   final String phoneNumber;
   final DateTime dob;
   final String homeAddress;
@@ -15,7 +14,6 @@ class RootsUser {
     required this.id,
     required this.fullName,
     required this.email,
-    required this.joinDate,
     required this.phoneNumber,
     required this.dob,
     required this.homeAddress,

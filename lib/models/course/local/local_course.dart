@@ -8,18 +8,38 @@ class LocalCourse {
   final String globalCourseId;
   final String instructorId;
   final String campusId;
-  final Map<String, String> workshopIdToLocation;
+  final String defaultLocation;
   final DateTime scheduledTime;
-  LocalCourse(
-      {required this.id,
-      required this.globalCourseId,
-      required this.instructorId,
-      required this.campusId,
-      required this.workshopIdToLocation,
-      required this.scheduledTime});
 
-  //students ids (in nested collection)
-  //review (in nested collection)
+  //registered students ids (in nested collection)
+  //reviews (in nested collection)
+
+  LocalCourse({
+    required this.id,
+    required this.globalCourseId,
+    required this.instructorId,
+    required this.campusId,
+    required this.defaultLocation,
+    required this.scheduledTime,
+  });
+
+  LocalCourse copyWith({
+    String? id,
+    String? globalCourseId,
+    String? instructorId,
+    String? campusId,
+    String? defaultLocation,
+    DateTime? scheduledTime,
+  }) {
+    return LocalCourse(
+      id: id ?? this.id,
+      globalCourseId: globalCourseId ?? this.globalCourseId,
+      instructorId: instructorId ?? this.instructorId,
+      campusId: campusId ?? this.campusId,
+      defaultLocation: defaultLocation ?? this.defaultLocation,
+      scheduledTime: scheduledTime ?? this.scheduledTime,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -27,7 +47,7 @@ class LocalCourse {
       'globalCourseId': globalCourseId,
       'instructorId': instructorId,
       'campusId': campusId,
-      'workshopIdToLocation': workshopIdToLocation,
+      'defaultLocation': defaultLocation,
       'scheduledTime': scheduledTime.millisecondsSinceEpoch,
     };
   }
@@ -38,9 +58,9 @@ class LocalCourse {
       globalCourseId: map['globalCourseId'] as String,
       instructorId: map['instructorId'] as String,
       campusId: map['campusId'] as String,
-      workshopIdToLocation: Map<String, String>.from(
-          (map['workshopIdToLocation'] as Map<dynamic, dynamic>)),
-      scheduledTime: DateTime.fromMillisecondsSinceEpoch(map['scheduledTime']),
+      defaultLocation: map['defaultLocation'] as String,
+      scheduledTime:
+          DateTime.fromMillisecondsSinceEpoch(map['scheduledTime'] as int),
     );
   }
 
@@ -51,19 +71,19 @@ class LocalCourse {
 
   @override
   String toString() {
-    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorId: $instructorId, campusId: $campusId, workshopIdToLocation: $workshopIdToLocation)';
+    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorId: $instructorId, campusId: $campusId, defaultLocation: $defaultLocation, scheduledTime: $scheduledTime)';
   }
 
   @override
   bool operator ==(covariant LocalCourse other) {
     if (identical(this, other)) return true;
-    final mapEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
         other.globalCourseId == globalCourseId &&
         other.instructorId == instructorId &&
         other.campusId == campusId &&
-        mapEquals(other.workshopIdToLocation, workshopIdToLocation);
+        other.defaultLocation == defaultLocation &&
+        other.scheduledTime == scheduledTime;
   }
 
   @override
@@ -72,6 +92,7 @@ class LocalCourse {
         globalCourseId.hashCode ^
         instructorId.hashCode ^
         campusId.hashCode ^
-        workshopIdToLocation.hashCode;
+        defaultLocation.hashCode ^
+        scheduledTime.hashCode;
   }
 }

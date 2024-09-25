@@ -4,11 +4,13 @@ import 'dart:convert';
 class LocalWorkshop {
   final String id;
   final String globalWorkShopId;
-  final DateTime scheduledTime;
+  final String? location;
+  final DateTime? scheduledTime;
   LocalWorkshop({
     required this.id,
     required this.globalWorkShopId,
-    required this.scheduledTime,
+    this.location,
+    this.scheduledTime,
   });
     // responses (in nested collection)
     // reviews (in nested collection)
@@ -16,14 +18,17 @@ class LocalWorkshop {
 
 
 
+
   LocalWorkshop copyWith({
     String? id,
     String? globalWorkShopId,
+    String? location,
     DateTime? scheduledTime,
   }) {
     return LocalWorkshop(
       id: id ?? this.id,
       globalWorkShopId: globalWorkShopId ?? this.globalWorkShopId,
+      location: location ?? this.location,
       scheduledTime: scheduledTime ?? this.scheduledTime,
     );
   }
@@ -32,7 +37,8 @@ class LocalWorkshop {
     return <String, dynamic>{
       'id': id,
       'globalWorkShopId': globalWorkShopId,
-      'scheduledTime': scheduledTime.millisecondsSinceEpoch,
+      'location': location,
+      'scheduledTime': scheduledTime?.millisecondsSinceEpoch,
     };
   }
 
@@ -40,7 +46,8 @@ class LocalWorkshop {
     return LocalWorkshop(
       id: map['id'] as String,
       globalWorkShopId: map['globalWorkShopId'] as String,
-      scheduledTime: DateTime.fromMillisecondsSinceEpoch(map['scheduledTime'] as int),
+      location: map['location'] != null ? map['location'] as String : null,
+      scheduledTime: map['scheduledTime'] != null ? DateTime.fromMillisecondsSinceEpoch(map['scheduledTime'] as int) : null,
     );
   }
 
@@ -49,7 +56,9 @@ class LocalWorkshop {
   factory LocalWorkshop.fromJson(String source) => LocalWorkshop.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'LocalWorkshop(id: $id, globalWorkShopId: $globalWorkShopId, scheduledTime: $scheduledTime)';
+  String toString() {
+    return 'LocalWorkshop(id: $id, globalWorkShopId: $globalWorkShopId, location: $location, scheduledTime: $scheduledTime)';
+  }
 
   @override
   bool operator ==(covariant LocalWorkshop other) {
@@ -58,9 +67,15 @@ class LocalWorkshop {
     return 
       other.id == id &&
       other.globalWorkShopId == globalWorkShopId &&
+      other.location == location &&
       other.scheduledTime == scheduledTime;
   }
 
   @override
-  int get hashCode => id.hashCode ^ globalWorkShopId.hashCode ^ scheduledTime.hashCode;
+  int get hashCode {
+    return id.hashCode ^
+      globalWorkShopId.hashCode ^
+      location.hashCode ^
+      scheduledTime.hashCode;
+  }
 }

@@ -2,31 +2,58 @@
 import 'dart:convert';
 
 class QuestionResponse {
-  final String text;
   final String id;
+  final String text;
+  final String globalCourseId;
   final String questionId;
-  final String userId;
+  final String studentId;
   final bool isAnswered;
   final DateTime dateTime;
   final bool isRemoved;
   final bool isInAppropriate;
+  QuestionResponse({
+    required this.id,
+    required this.text,
+    required this.globalCourseId,
+    required this.questionId,
+    required this.studentId,
+    required this.isAnswered,
+    required this.dateTime,
+    required this.isRemoved,
+    required this.isInAppropriate,
+  });
 
-  QuestionResponse(
-      {required this.text,
-      required this.id,
-      required this.questionId,
-      required this.userId,
-      required this.isAnswered,
-      required this.dateTime,
-      required this.isRemoved,
-      required this.isInAppropriate});
+  QuestionResponse copyWith({
+    String? id,
+    String? text,
+    String? globalCourseId,
+    String? questionId,
+    String? studentId,
+    bool? isAnswered,
+    DateTime? dateTime,
+    bool? isRemoved,
+    bool? isInAppropriate,
+  }) {
+    return QuestionResponse(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      globalCourseId: globalCourseId ?? this.globalCourseId,
+      questionId: questionId ?? this.questionId,
+      studentId: studentId ?? this.studentId,
+      isAnswered: isAnswered ?? this.isAnswered,
+      dateTime: dateTime ?? this.dateTime,
+      isRemoved: isRemoved ?? this.isRemoved,
+      isInAppropriate: isInAppropriate ?? this.isInAppropriate,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'text': text,
       'id': id,
+      'text': text,
+      'globalCourseId': globalCourseId,
       'questionId': questionId,
-      'userId': userId,
+      'studentId': studentId,
       'isAnswered': isAnswered,
       'dateTime': dateTime.millisecondsSinceEpoch,
       'isRemoved': isRemoved,
@@ -36,10 +63,11 @@ class QuestionResponse {
 
   factory QuestionResponse.fromMap(Map<String, dynamic> map) {
     return QuestionResponse(
-      text: map['text'] as String,
       id: map['id'] as String,
+      text: map['text'] as String,
+      globalCourseId: map['globalCourseId'] as String,
       questionId: map['questionId'] as String,
-      userId: map['userId'] as String,
+      studentId: map['studentId'] as String,
       isAnswered: map['isAnswered'] as bool,
       dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int),
       isRemoved: map['isRemoved'] as bool,
@@ -54,17 +82,18 @@ class QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(text: $text, id: $id, questionId: $questionId, userId: $userId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
+    return 'QuestionResponse(id: $id, text: $text, globalCourseId: $globalCourseId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
   }
 
   @override
   bool operator ==(covariant QuestionResponse other) {
     if (identical(this, other)) return true;
 
-    return other.text == text &&
-        other.id == id &&
+    return other.id == id &&
+        other.text == text &&
+        other.globalCourseId == globalCourseId &&
         other.questionId == questionId &&
-        other.userId == userId &&
+        other.studentId == studentId &&
         other.isAnswered == isAnswered &&
         other.dateTime == dateTime &&
         other.isRemoved == isRemoved &&
@@ -73,10 +102,11 @@ class QuestionResponse {
 
   @override
   int get hashCode {
-    return text.hashCode ^
-        id.hashCode ^
+    return id.hashCode ^
+        text.hashCode ^
+        globalCourseId.hashCode ^
         questionId.hashCode ^
-        userId.hashCode ^
+        studentId.hashCode ^
         isAnswered.hashCode ^
         dateTime.hashCode ^
         isRemoved.hashCode ^
