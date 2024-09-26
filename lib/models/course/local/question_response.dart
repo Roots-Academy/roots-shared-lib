@@ -4,7 +4,7 @@ import 'dart:convert';
 class QuestionResponse {
   final String id;
   final String text;
-  final String globalCourseId;
+  final String localWorkshopId;
   final String questionId;
   final String studentId;
   final bool isAnswered;
@@ -14,7 +14,7 @@ class QuestionResponse {
   QuestionResponse({
     required this.id,
     required this.text,
-    required this.globalCourseId,
+    required this.localWorkshopId,
     required this.questionId,
     required this.studentId,
     required this.isAnswered,
@@ -26,7 +26,7 @@ class QuestionResponse {
   QuestionResponse copyWith({
     String? id,
     String? text,
-    String? globalCourseId,
+    String? localWorkshopId,
     String? questionId,
     String? studentId,
     bool? isAnswered,
@@ -37,7 +37,7 @@ class QuestionResponse {
     return QuestionResponse(
       id: id ?? this.id,
       text: text ?? this.text,
-      globalCourseId: globalCourseId ?? this.globalCourseId,
+      localWorkshopId: localWorkshopId ?? this.localWorkshopId,
       questionId: questionId ?? this.questionId,
       studentId: studentId ?? this.studentId,
       isAnswered: isAnswered ?? this.isAnswered,
@@ -51,7 +51,7 @@ class QuestionResponse {
     return <String, dynamic>{
       'id': id,
       'text': text,
-      'globalCourseId': globalCourseId,
+      'localWorkshopId': localWorkshopId,
       'questionId': questionId,
       'studentId': studentId,
       'isAnswered': isAnswered,
@@ -65,7 +65,7 @@ class QuestionResponse {
     return QuestionResponse(
       id: map['id'] as String,
       text: map['text'] as String,
-      globalCourseId: map['globalCourseId'] as String,
+      localWorkshopId: map['localWorkshopId'] as String,
       questionId: map['questionId'] as String,
       studentId: map['studentId'] as String,
       isAnswered: map['isAnswered'] as bool,
@@ -82,7 +82,7 @@ class QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, text: $text, globalCourseId: $globalCourseId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
+    return 'QuestionResponse(id: $id, text: $text, localWorkshopId: $localWorkshopId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
   }
 
   @override
@@ -91,7 +91,7 @@ class QuestionResponse {
 
     return other.id == id &&
         other.text == text &&
-        other.globalCourseId == globalCourseId &&
+        other.localWorkshopId == localWorkshopId &&
         other.questionId == questionId &&
         other.studentId == studentId &&
         other.isAnswered == isAnswered &&
@@ -104,7 +104,7 @@ class QuestionResponse {
   int get hashCode {
     return id.hashCode ^
         text.hashCode ^
-        globalCourseId.hashCode ^
+        localWorkshopId.hashCode ^
         questionId.hashCode ^
         studentId.hashCode ^
         isAnswered.hashCode ^
