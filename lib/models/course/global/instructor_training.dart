@@ -5,34 +5,34 @@ import 'package:roots_shared_lib/models/helper_models/uploaded_file_data.dart';
 
 class InstructorTraining {
   final String id;
-  final String videoLink;
+  final String youtubeVideoLink;
   InstructorTraining({
     required this.id,
-    required this.videoLink,
+    required this.youtubeVideoLink,
   });
 
 
   InstructorTraining copyWith({
     String? id,
-    String? videoLink,
+    String? youtubeVideoLink,
   }) {
     return InstructorTraining(
       id: id ?? this.id,
-      videoLink: videoLink ?? this.videoLink,
+      youtubeVideoLink: youtubeVideoLink ?? this.youtubeVideoLink,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'videoLink': videoLink,
+      'youtubeVideoLink': youtubeVideoLink,
     };
   }
 
   factory InstructorTraining.fromMap(Map<String, dynamic> map) {
     return InstructorTraining(
       id: map['id'] as String,
-      videoLink: map['videoLink'] as String,
+      youtubeVideoLink: map['youtubeVideoLink'] as String,
     );
   }
 
@@ -41,7 +41,7 @@ class InstructorTraining {
   factory InstructorTraining.fromJson(String source) => InstructorTraining.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'InstructorTraining(id: $id, videoLink: $videoLink)';
+  String toString() => 'InstructorTraining(id: $id, youtubeVideoLink: $youtubeVideoLink)';
 
   @override
   bool operator ==(covariant InstructorTraining other) {
@@ -49,9 +49,9 @@ class InstructorTraining {
   
     return 
       other.id == id &&
-      other.videoLink == videoLink;
+      other.youtubeVideoLink == youtubeVideoLink;
   }
 
   @override
-  int get hashCode => id.hashCode ^ videoLink.hashCode;
+  int get hashCode => id.hashCode ^ youtubeVideoLink.hashCode;
 }
