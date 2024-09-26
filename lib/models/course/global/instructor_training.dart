@@ -5,17 +5,16 @@ import 'package:roots_shared_lib/models/helper_models/uploaded_file_data.dart';
 
 class InstructorTraining {
   final String id;
-  final UploadedFileData videoLink;
+  final String videoLink;
   InstructorTraining({
     required this.id,
     required this.videoLink,
   });
 
 
-
   InstructorTraining copyWith({
     String? id,
-    UploadedFileData? videoLink,
+    String? videoLink,
   }) {
     return InstructorTraining(
       id: id ?? this.id,
@@ -26,14 +25,14 @@ class InstructorTraining {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'videoLink': videoLink.toMap(),
+      'videoLink': videoLink,
     };
   }
 
   factory InstructorTraining.fromMap(Map<String, dynamic> map) {
     return InstructorTraining(
       id: map['id'] as String,
-      videoLink: UploadedFileData.fromMap(map['videoLink'] as Map<String,dynamic>),
+      videoLink: map['videoLink'] as String,
     );
   }
 
