@@ -73,7 +73,7 @@ class GlobalWorkshop {
       imageLink:
           UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
       questions: List<Question>.from(
-        (map['questions'] as List<int>).map<Question>(
+        (map['questions'] as List<dynamic>).map<Question>(
           (x) => Question.fromMap(x as Map<String, dynamic>),
         ),
       ),
