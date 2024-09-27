@@ -18,6 +18,7 @@ class GlobalWorkshop {
   final UploadedFileData instructorNotesLink;
   final UploadedFileData instructorSlidesLink;
   final UploadedFileData imageLink;
+  final List<Question> questions;
   GlobalWorkshop({
     required this.id,
     required this.title,
@@ -25,12 +26,8 @@ class GlobalWorkshop {
     required this.instructorNotesLink,
     required this.instructorSlidesLink,
     required this.imageLink,
+    required this.questions,
   });
-
-  //nested collection of instructor trainings
-  // final InstructorTraining instructorTraining;
-
-
 
   GlobalWorkshop copyWith({
     String? id,
@@ -39,6 +36,7 @@ class GlobalWorkshop {
     UploadedFileData? instructorNotesLink,
     UploadedFileData? instructorSlidesLink,
     UploadedFileData? imageLink,
+    List<Question>? questions,
   }) {
     return GlobalWorkshop(
       id: id ?? this.id,
@@ -47,6 +45,7 @@ class GlobalWorkshop {
       instructorNotesLink: instructorNotesLink ?? this.instructorNotesLink,
       instructorSlidesLink: instructorSlidesLink ?? this.instructorSlidesLink,
       imageLink: imageLink ?? this.imageLink,
+      questions: questions ?? this.questions,
     );
   }
 
@@ -58,6 +57,7 @@ class GlobalWorkshop {
       'instructorNotesLink': instructorNotesLink.toMap(),
       'instructorSlidesLink': instructorSlidesLink.toMap(),
       'imageLink': imageLink.toMap(),
+      'questions': questions.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -66,41 +66,52 @@ class GlobalWorkshop {
       id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
-      instructorNotesLink: UploadedFileData.fromMap(map['instructorNotesLink'] as Map<String,dynamic>),
-      instructorSlidesLink: UploadedFileData.fromMap(map['instructorSlidesLink'] as Map<String,dynamic>),
-      imageLink: UploadedFileData.fromMap(map['imageLink'] as Map<String,dynamic>),
+      instructorNotesLink: UploadedFileData.fromMap(
+          map['instructorNotesLink'] as Map<String, dynamic>),
+      instructorSlidesLink: UploadedFileData.fromMap(
+          map['instructorSlidesLink'] as Map<String, dynamic>),
+      imageLink:
+          UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
+      questions: List<Question>.from(
+        (map['questions'] as List<int>).map<Question>(
+          (x) => Question.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory GlobalWorkshop.fromJson(String source) => GlobalWorkshop.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GlobalWorkshop.fromJson(String source) =>
+      GlobalWorkshop.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'GlobalWorkshop(id: $id, title: $title, description: $description, instructorNotesLink: $instructorNotesLink, instructorSlidesLink: $instructorSlidesLink, imageLink: $imageLink)';
+    return 'GlobalWorkshop(id: $id, title: $title, description: $description, instructorNotesLink: $instructorNotesLink, instructorSlidesLink: $instructorSlidesLink, imageLink: $imageLink, questions: $questions)';
   }
 
   @override
   bool operator ==(covariant GlobalWorkshop other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.title == title &&
-      other.description == description &&
-      other.instructorNotesLink == instructorNotesLink &&
-      other.instructorSlidesLink == instructorSlidesLink &&
-      other.imageLink == imageLink;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other.id == id &&
+        other.title == title &&
+        other.description == description &&
+        other.instructorNotesLink == instructorNotesLink &&
+        other.instructorSlidesLink == instructorSlidesLink &&
+        other.imageLink == imageLink &&
+        listEquals(other.questions, questions);
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      title.hashCode ^
-      description.hashCode ^
-      instructorNotesLink.hashCode ^
-      instructorSlidesLink.hashCode ^
-      imageLink.hashCode;
+        title.hashCode ^
+        description.hashCode ^
+        instructorNotesLink.hashCode ^
+        instructorSlidesLink.hashCode ^
+        imageLink.hashCode ^
+        questions.hashCode;
   }
 }

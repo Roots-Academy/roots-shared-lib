@@ -7,12 +7,15 @@ class LocalCourse {
   final String id;
   final String globalCourseId;
   final String instructorId;
+  //convert instructorId to be a list of instructors
   final String campusId;
   final String defaultLocation;
   final DateTime scheduledTime;
+  //convert it into scheduled weekly time, whether it will be in TimeOfDayOr not
 
-  //registered students ids (in nested collection)
-  //reviews (in nested collection)
+
+  //nested registered students ids (in nested collection)
+  //nested reviews (in nested collection)
 
   LocalCourse({
     required this.id,

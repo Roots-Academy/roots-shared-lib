@@ -7,11 +7,13 @@ import 'choice.dart';
 
 class Question {
   final String id;
+  final int slideNo;
   final String questionText;
   // final QuestionType type;
   final List<Choice>? choices;
   Question({
     required this.id,
+    required this.slideNo,
     required this.questionText,
     this.choices,
   });
@@ -22,10 +24,10 @@ class Question {
     List<Choice>? choices,
   }) {
     return Question(
-      id: id ?? this.id,
-      questionText: questionText ?? this.questionText,
-      choices: choices ?? this.choices,
-    );
+        id: id ?? this.id,
+        questionText: questionText ?? this.questionText,
+        choices: choices ?? this.choices,
+        slideNo: slideNo);
   }
 
   Map<String, dynamic> toMap() {
@@ -33,6 +35,7 @@ class Question {
       'id': id,
       'questionText': questionText,
       'choices': choices?.map((x) => x.toMap()).toList(),
+      "slideNo": slideNo
     };
   }
 
@@ -47,6 +50,7 @@ class Question {
               ),
             )
           : null,
+      slideNo: map['slideNo'] as int,
     );
   }
 

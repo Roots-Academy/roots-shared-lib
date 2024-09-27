@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:roots_shared_lib/models/helper_models/uploaded_file_data.dart';
-
 class InstructorTraining {
   final String id;
   final String youtubeVideoLink;
