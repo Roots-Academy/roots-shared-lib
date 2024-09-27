@@ -45,7 +45,7 @@ class Question {
       questionText: map['questionText'] as String,
       choices: map['choices'] != null
           ? List<Choice>.from(
-              (map['choices'] as List<int>).map<Choice?>(
+              (map['choices'] as List<dynamic>).map<Choice?>(
                 (x) => Choice.fromMap(x as Map<String, dynamic>),
               ),
             )
