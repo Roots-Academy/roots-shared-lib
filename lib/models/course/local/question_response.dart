@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:roots_shared_lib/models/course/global/question/answer.dart';
+
 class QuestionResponse {
   final String id;
-  final String text;
+  final Answer answer;
   final String localWorkshopId;
   final String questionId;
   final String studentId;
@@ -13,7 +15,7 @@ class QuestionResponse {
   final bool isInAppropriate;
   QuestionResponse({
     required this.id,
-    required this.text,
+    required this.answer,
     required this.localWorkshopId,
     required this.questionId,
     required this.studentId,
@@ -23,34 +25,10 @@ class QuestionResponse {
     required this.isInAppropriate,
   });
 
-  QuestionResponse copyWith({
-    String? id,
-    String? text,
-    String? localWorkshopId,
-    String? questionId,
-    String? studentId,
-    bool? isAnswered,
-    DateTime? dateTime,
-    bool? isRemoved,
-    bool? isInAppropriate,
-  }) {
-    return QuestionResponse(
-      id: id ?? this.id,
-      text: text ?? this.text,
-      localWorkshopId: localWorkshopId ?? this.localWorkshopId,
-      questionId: questionId ?? this.questionId,
-      studentId: studentId ?? this.studentId,
-      isAnswered: isAnswered ?? this.isAnswered,
-      dateTime: dateTime ?? this.dateTime,
-      isRemoved: isRemoved ?? this.isRemoved,
-      isInAppropriate: isInAppropriate ?? this.isInAppropriate,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'text': text,
+      'answer': answer.toMap(),
       'localWorkshopId': localWorkshopId,
       'questionId': questionId,
       'studentId': studentId,
@@ -64,7 +42,7 @@ class QuestionResponse {
   factory QuestionResponse.fromMap(Map<String, dynamic> map) {
     return QuestionResponse(
       id: map['id'] as String,
-      text: map['text'] as String,
+      answer: Answer.fromMap(map['answer'] as Map<String, dynamic>),
       localWorkshopId: map['localWorkshopId'] as String,
       questionId: map['questionId'] as String,
       studentId: map['studentId'] as String,
@@ -82,7 +60,7 @@ class QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, text: $text, localWorkshopId: $localWorkshopId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
+    return 'QuestionResponse(id: $id, answer: $answer, localWorkshopId: $localWorkshopId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
   }
 
   @override
@@ -90,7 +68,7 @@ class QuestionResponse {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.text == text &&
+        other.answer == answer &&
         other.localWorkshopId == localWorkshopId &&
         other.questionId == questionId &&
         other.studentId == studentId &&
@@ -103,7 +81,7 @@ class QuestionResponse {
   @override
   int get hashCode {
     return id.hashCode ^
-        text.hashCode ^
+        answer.hashCode ^
         localWorkshopId.hashCode ^
         questionId.hashCode ^
         studentId.hashCode ^

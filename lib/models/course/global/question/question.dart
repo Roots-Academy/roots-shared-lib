@@ -2,31 +2,31 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:roots_shared_lib/models/course/global/question/answer.dart';
 
-import 'choice.dart';
 
 class Question {
   final String id;
   final int slideNo;
   final String questionText;
   // final QuestionType type;
-  final List<Choice>? choices;
+  final List<Answer>? mcqAnswers;
   Question({
     required this.id,
     required this.slideNo,
     required this.questionText,
-    this.choices,
+    this.mcqAnswers,
   });
 
   Question copyWith({
     String? id,
     String? questionText,
-    List<Choice>? choices,
+    List<Answer>? mcqAnswers,
   }) {
     return Question(
         id: id ?? this.id,
         questionText: questionText ?? this.questionText,
-        choices: choices ?? this.choices,
+        mcqAnswers: mcqAnswers ?? this.mcqAnswers,
         slideNo: slideNo);
   }
 
@@ -34,7 +34,7 @@ class Question {
     return <String, dynamic>{
       'id': id,
       'questionText': questionText,
-      'choices': choices?.map((x) => x.toMap()).toList(),
+      'mcqAnswers': mcqAnswers?.map((x) => x.toMap()).toList(),
       "slideNo": slideNo
     };
   }
@@ -43,10 +43,10 @@ class Question {
     return Question(
       id: map['id'] as String,
       questionText: map['questionText'] as String,
-      choices: map['choices'] != null
-          ? List<Choice>.from(
-              (map['choices'] as List<dynamic>).map<Choice?>(
-                (x) => Choice.fromMap(x as Map<String, dynamic>),
+      mcqAnswers: map['mcqAnswers'] != null
+          ? List<Answer>.from(
+              (map['mcqAnswers'] as List<dynamic>).map<Answer?>(
+                (x) => Answer.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
@@ -61,7 +61,7 @@ class Question {
 
   @override
   String toString() =>
-      'Question(id: $id, questionText: $questionText, choices: $choices)';
+      'Question(id: $id, questionText: $questionText, mcqAnswers: $mcqAnswers)';
 
   @override
   bool operator ==(covariant Question other) {
@@ -70,9 +70,9 @@ class Question {
 
     return other.id == id &&
         other.questionText == questionText &&
-        listEquals(other.choices, choices);
+        listEquals(other.mcqAnswers, mcqAnswers);
   }
 
   @override
-  int get hashCode => id.hashCode ^ questionText.hashCode ^ choices.hashCode;
+  int get hashCode => id.hashCode ^ questionText.hashCode ^ mcqAnswers.hashCode;
 }

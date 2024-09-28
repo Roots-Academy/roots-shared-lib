@@ -1,16 +1,16 @@
-class Choice {
+class Answer {
   String number;
   String text;
-  Choice({
+  Answer({
     required this.number,
     required this.text,
   });
 
-  Choice copyWith({
+  Answer copyWith({
     String? number,
     String? text,
   }) {
-    return Choice(
+    return Answer(
       number: number ?? this.number,
       text: text ?? this.text,
     );
@@ -23,8 +23,8 @@ class Choice {
     };
   }
 
-  factory Choice.fromMap(Map<String, dynamic> map) {
-    return Choice(
+  factory Answer.fromMap(Map<String, dynamic> map) {
+    return Answer(
       number: map['number'] as String,
       text: map['text'] as String,
     );
@@ -32,10 +32,10 @@ class Choice {
 
 
   @override
-  String toString() => 'Choice(number: $number, text: $text)';
+  String toString() => 'Answer(number: $number, text: $text)';
 
   @override
-  bool operator ==(covariant Choice other) {
+  bool operator ==(covariant Answer other) {
     if (identical(this, other)) return true;
   
     return 
