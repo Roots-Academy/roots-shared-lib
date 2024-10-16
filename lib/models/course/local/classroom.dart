@@ -3,13 +3,13 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-class LocalClassroom {
+class Classroom {
   final String localWorkshopId;
   final String currentQuestionId;
   final List<String> availableStudentsIds;
   final DateTime openTime;
   final String selectedStudentId;
-  LocalClassroom({
+  Classroom({
     required this.localWorkshopId,
     required this.currentQuestionId,
     required this.availableStudentsIds,
@@ -17,14 +17,14 @@ class LocalClassroom {
     required this.selectedStudentId,
   });
 
-  LocalClassroom copyWith({
+  Classroom copyWith({
     String? localWorkshopId,
     String? currentQuestionId,
     List<String>? availableStudentsIds,
     DateTime? openTime,
     String? selectedStudentId,
   }) {
-    return LocalClassroom(
+    return Classroom(
       localWorkshopId: localWorkshopId ?? this.localWorkshopId,
       currentQuestionId: currentQuestionId ?? this.currentQuestionId,
       availableStudentsIds: availableStudentsIds ?? this.availableStudentsIds,
@@ -43,8 +43,8 @@ class LocalClassroom {
     };
   }
 
-  factory LocalClassroom.fromMap(Map<String, dynamic> map) {
-    return LocalClassroom(
+  factory Classroom.fromMap(Map<String, dynamic> map) {
+    return Classroom(
       localWorkshopId: map['localWorkshopId'] as String,
       currentQuestionId: map['currentQuestionId'] as String,
       availableStudentsIds:
@@ -56,16 +56,16 @@ class LocalClassroom {
 
   String toJson() => json.encode(toMap());
 
-  factory LocalClassroom.fromJson(String source) =>
-      LocalClassroom.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Classroom.fromJson(String source) =>
+      Classroom.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'LocalClassroom(localWorkshopId: $localWorkshopId, currentQuestionId: $currentQuestionId, availableStudentsIds: $availableStudentsIds, openTime: $openTime, selectedStudentId: $selectedStudentId)';
+    return 'Classroom(localWorkshopId: $localWorkshopId, currentQuestionId: $currentQuestionId, availableStudentsIds: $availableStudentsIds, openTime: $openTime, selectedStudentId: $selectedStudentId)';
   }
 
   @override
-  bool operator ==(covariant LocalClassroom other) {
+  bool operator ==(covariant Classroom other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
