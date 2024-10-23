@@ -75,4 +75,43 @@ class Instructor extends RootsUser {
       instructorType:InstructorType.values[map['instructorType']], 
     );
   }
+  Instructor copyWith({
+    String? id,
+    String? fullName,
+    String? email,
+    String? phoneNumber,
+    DateTime? dob,
+    String? homeAddress,
+    bool? isMale,
+    bool? isActive,
+    String? bio,
+    String? emergencyEmail,
+    String? allergies,
+    String? emergencyName,
+    String? emergencyNumber,
+    String? emergencyRelationship,
+    List<String>? campusIds,
+    InstructorType? instructorType,
+  }) {
+    return Instructor(
+      id: id ?? super.id,                                  // Passed to the parent class
+      fullName: fullName ?? super.fullName,                // Passed to the parent class
+      email: email ?? super.email,                         // Passed to the parent class
+      phoneNumber: phoneNumber ?? super.phoneNumber,       // Passed to the parent class
+      dob: dob ?? super.dob,                               // Passed to the parent class
+      homeAddress: homeAddress ?? super.homeAddress,       // Passed to the parent class
+      isMale: isMale ?? super.isMale,                      // Passed to the parent class
+      isActive: isActive ?? this.isActive,                // Handled by Instructor class itself
+      bio: bio ?? this.bio,                               // Handled by Instructor class itself
+      emergencyEmail: emergencyEmail ?? this.emergencyEmail, // Handled by Instructor class itself
+      allergies: allergies ?? this.allergies,             // Handled by Instructor class itself
+      emergencyName: emergencyName ?? this.emergencyName, // Handled by Instructor class itself
+      emergencyNumber: emergencyNumber ?? this.emergencyNumber, // Handled by Instructor class itself
+      emergencyRelationship: emergencyRelationship ?? this.emergencyRelationship, // Handled by Instructor class itself
+      campusIds: campusIds ?? this.campusIds,             // Handled by Instructor class itself
+      instructorType: instructorType ?? this.instructorType, // Handled by Instructor class itself
+    );
+  }
 }
+
+
