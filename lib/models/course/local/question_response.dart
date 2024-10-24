@@ -42,7 +42,8 @@ class QuestionResponse {
   factory QuestionResponse.fromMap(Map<String, dynamic> map) {
     return QuestionResponse(
       id: map['id'] as String,
-      answer: Answer.fromMap(map['answer'] as Map<String, dynamic>),
+      answer: Answer.fromMap((map['answer'] as Map<dynamic, dynamic>)
+          .map((key, value) => MapEntry(key.toString(), value))),
       localWorkshopId: map['localWorkshopId'] as String,
       questionId: map['questionId'] as String,
       studentId: map['studentId'] as String,
@@ -89,5 +90,29 @@ class QuestionResponse {
         dateTime.hashCode ^
         isRemoved.hashCode ^
         isInAppropriate.hashCode;
+  }
+
+  QuestionResponse copyWith({
+    String? id,
+    Answer? answer,
+    String? localWorkshopId,
+    String? questionId,
+    String? studentId,
+    bool? isAnswered,
+    DateTime? dateTime,
+    bool? isRemoved,
+    bool? isInAppropriate,
+  }) {
+    return QuestionResponse(
+      id: id ?? this.id,
+      answer: answer ?? this.answer,
+      localWorkshopId: localWorkshopId ?? this.localWorkshopId,
+      questionId: questionId ?? this.questionId,
+      studentId: studentId ?? this.studentId,
+      isAnswered: isAnswered ?? this.isAnswered,
+      dateTime: dateTime ?? this.dateTime,
+      isRemoved: isRemoved ?? this.isRemoved,
+      isInAppropriate: isInAppropriate ?? this.isInAppropriate,
+    );
   }
 }
