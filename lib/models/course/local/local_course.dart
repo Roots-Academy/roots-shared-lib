@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 class LocalCourse {
   final String id;
   final String globalCourseId;
-  final List<String> instructorId;
+  final List<String> instructorIds;
   final String campusId;
   final String defaultLocation;
   final Timestamp creationTime;
@@ -19,7 +19,7 @@ class LocalCourse {
   LocalCourse({
     required this.id,
     required this.globalCourseId,
-    required this.instructorId,
+    required this.instructorIds,
     required this.campusId,
     required this.creationTime,
     required this.defaultLocation,
@@ -31,7 +31,7 @@ class LocalCourse {
   LocalCourse copyWith(
       {String? id,
       String? globalCourseId,
-      List<String>? instructorId,
+      List<String>? instructorIds,
       String? campusId,
       String? defaultLocation,
       Timestamp? scheduledWeeklyTime,
@@ -41,7 +41,7 @@ class LocalCourse {
     return LocalCourse(
         id: id ?? this.id,
         globalCourseId: globalCourseId ?? this.globalCourseId,
-        instructorId: instructorId ?? this.instructorId,
+        instructorIds: instructorIds ?? this.instructorIds,
         campusId: campusId ?? this.campusId,
         creationTime: creationTime ?? this.creationTime,
         defaultLocation: defaultLocation ?? this.defaultLocation,
@@ -55,7 +55,7 @@ class LocalCourse {
     return <String, dynamic>{
       'id': id,
       'globalCourseId': globalCourseId,
-      'instructorId': instructorId,
+      'instructorIds': instructorIds,
       'campusId': campusId,
       'defaultLocation': defaultLocation,
       'scheduledWeeklyTime': scheduledWeeklyTime,
@@ -69,7 +69,7 @@ class LocalCourse {
     return LocalCourse(
         id: map['id'] as String,
         globalCourseId: map['globalCourseId'] as String,
-        instructorId: List<String>.from((map['instructorId'] as List<String>)),
+        instructorIds: List<String>.from((map['instructorIds'] as List<String>)),
         campusId: map['campusId'] as String,
         defaultLocation: map['defaultLocation'] as String,
         scheduledWeeklyTime: map['scheduledWeeklyTime'] as Timestamp,
@@ -87,7 +87,7 @@ class LocalCourse {
 
   @override
   String toString() {
-    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorId: $instructorId, campusId: $campusId, defaultLocation: $defaultLocation, scheduledWeeklyTime: $scheduledWeeklyTime, studentIds: $studentIds)';
+    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorIds: $instructorIds, campusId: $campusId, defaultLocation: $defaultLocation, scheduledWeeklyTime: $scheduledWeeklyTime, studentIds: $studentIds)';
   }
 
   @override
@@ -97,7 +97,7 @@ class LocalCourse {
 
     return other.id == id &&
         other.globalCourseId == globalCourseId &&
-        listEquals(other.instructorId, instructorId) &&
+        listEquals(other.instructorIds, instructorIds) &&
         other.campusId == campusId &&
         other.defaultLocation == defaultLocation &&
         other.scheduledWeeklyTime == scheduledWeeklyTime &&
@@ -108,7 +108,7 @@ class LocalCourse {
   int get hashCode {
     return id.hashCode ^
         globalCourseId.hashCode ^
-        instructorId.hashCode ^
+        instructorIds.hashCode ^
         campusId.hashCode ^
         defaultLocation.hashCode ^
         scheduledWeeklyTime.hashCode ^
