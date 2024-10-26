@@ -10,7 +10,7 @@ class FirebaseEndPoints {
   // static String ticketsCollection = "test_campuses";
   static String questionsResponesCollection = "test_questions_responses";
   static String classroomsCollection = "test_classrooms";
-  static String questionsCollection = "test_questions";
+  // static String questionsCollection = "test_questions";
   static String instructorTrainingCollection =
       "test_instructor_training_collection";
   static String studentReviewsForLocalCourse =

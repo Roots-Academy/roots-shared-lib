@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 
-import 'package:roots_shared_lib/models/course/global/instructor_training.dart';
+import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
 import 'question/question.dart';
@@ -14,6 +14,8 @@ import 'question/question.dart';
 class GlobalWorkshop {
   final String id;
   final String title;
+  final int index;
+  final String globalCourseId;
   final String description;
   final UploadedFileData instructorNotesLink;
   final UploadedFileData instructorSlidesLink;
@@ -21,7 +23,9 @@ class GlobalWorkshop {
   final List<Question> questions;
   GlobalWorkshop({
     required this.id,
+    required this.globalCourseId,
     required this.title,
+    required this.index,
     required this.description,
     required this.instructorNotesLink,
     required this.instructorSlidesLink,
@@ -29,17 +33,20 @@ class GlobalWorkshop {
     required this.questions,
   });
 
-  GlobalWorkshop copyWith({
-    String? id,
-    String? title,
-    String? description,
-    UploadedFileData? instructorNotesLink,
-    UploadedFileData? instructorSlidesLink,
-    UploadedFileData? imageLink,
-    List<Question>? questions,
-  }) {
+  GlobalWorkshop copyWith(
+      {String? id,
+      String? title,
+      String? description,
+      UploadedFileData? instructorNotesLink,
+      UploadedFileData? instructorSlidesLink,
+      UploadedFileData? imageLink,
+      List<Question>? questions,
+      int? index,
+      String? globalCourseId}) {
     return GlobalWorkshop(
       id: id ?? this.id,
+      index: index ?? this.index,
+      globalCourseId: globalCourseId ?? this.globalCourseId,
       title: title ?? this.title,
       description: description ?? this.description,
       instructorNotesLink: instructorNotesLink ?? this.instructorNotesLink,
@@ -53,31 +60,34 @@ class GlobalWorkshop {
     return <String, dynamic>{
       'id': id,
       'title': title,
+      'index': index,
       'description': description,
       'instructorNotesLink': instructorNotesLink.toMap(),
       'instructorSlidesLink': instructorSlidesLink.toMap(),
       'imageLink': imageLink.toMap(),
       'questions': questions.map((x) => x.toMap()).toList(),
+      'globalCourseId': globalCourseId
     };
   }
 
   factory GlobalWorkshop.fromMap(Map<String, dynamic> map) {
     return GlobalWorkshop(
-      id: map['id'] as String,
-      title: map['title'] as String,
-      description: map['description'] as String,
-      instructorNotesLink: UploadedFileData.fromMap(
-          map['instructorNotesLink'] as Map<String, dynamic>),
-      instructorSlidesLink: UploadedFileData.fromMap(
-          map['instructorSlidesLink'] as Map<String, dynamic>),
-      imageLink:
-          UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
-      questions: List<Question>.from(
-        (map['questions'] as List<dynamic>).map<Question>(
-          (x) => Question.fromMap(x as Map<String, dynamic>),
+        id: map['id'] as String,
+        title: map['title'] as String,
+        index: map['index'] as int,
+        description: map['description'] as String,
+        instructorNotesLink: UploadedFileData.fromMap(
+            map['instructorNotesLink'] as Map<String, dynamic>),
+        instructorSlidesLink: UploadedFileData.fromMap(
+            map['instructorSlidesLink'] as Map<String, dynamic>),
+        imageLink:
+            UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
+        questions: List<Question>.from(
+          (map['questions'] as List<dynamic>).map<Question>(
+            (x) => Question.fromMap(x as Map<String, dynamic>),
+          ),
         ),
-      ),
-    );
+        globalCourseId: map['globalCourseId'] as String);
   }
 
   String toJson() => json.encode(toMap());

@@ -1,47 +1,54 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class LocalCourse {
   final String id;
   final String globalCourseId;
-  final String instructorId;
-  //convert instructorId to be a list of instructors
+  final List<String> instructorId;
   final String campusId;
   final String defaultLocation;
-  final DateTime scheduledTime;
-  //convert it into scheduled weekly time, whether it will be in TimeOfDayOr not
+  final Timestamp creationTime;
+  final Timestamp scheduledWeeklyTime;
+  final List<String> studentIds;
+  final String? currentLocalWorkshopId;
 
-
-  //nested registered students ids (in nested collection)
-  //nested reviews (in nested collection)
-
+  //nested reviewsforcourse to be implemented (in nested collection)
   LocalCourse({
     required this.id,
     required this.globalCourseId,
     required this.instructorId,
     required this.campusId,
+    required this.creationTime,
     required this.defaultLocation,
-    required this.scheduledTime,
+    required this.scheduledWeeklyTime,
+    required this.studentIds,
+    required this.currentLocalWorkshopId,
   });
 
-  LocalCourse copyWith({
-    String? id,
-    String? globalCourseId,
-    String? instructorId,
-    String? campusId,
-    String? defaultLocation,
-    DateTime? scheduledTime,
-  }) {
+  LocalCourse copyWith(
+      {String? id,
+      String? globalCourseId,
+      List<String>? instructorId,
+      String? campusId,
+      String? defaultLocation,
+      Timestamp? scheduledWeeklyTime,
+      List<String>? studentIds,
+      Timestamp? creationTime,
+      String? currentLocalWorkshopId}) {
     return LocalCourse(
-      id: id ?? this.id,
-      globalCourseId: globalCourseId ?? this.globalCourseId,
-      instructorId: instructorId ?? this.instructorId,
-      campusId: campusId ?? this.campusId,
-      defaultLocation: defaultLocation ?? this.defaultLocation,
-      scheduledTime: scheduledTime ?? this.scheduledTime,
-    );
+        id: id ?? this.id,
+        globalCourseId: globalCourseId ?? this.globalCourseId,
+        instructorId: instructorId ?? this.instructorId,
+        campusId: campusId ?? this.campusId,
+        creationTime: creationTime ?? this.creationTime,
+        defaultLocation: defaultLocation ?? this.defaultLocation,
+        scheduledWeeklyTime: scheduledWeeklyTime ?? this.scheduledWeeklyTime,
+        studentIds: studentIds ?? this.studentIds,
+        currentLocalWorkshopId:
+            currentLocalWorkshopId ?? this.currentLocalWorkshopId);
   }
 
   Map<String, dynamic> toMap() {
@@ -51,20 +58,26 @@ class LocalCourse {
       'instructorId': instructorId,
       'campusId': campusId,
       'defaultLocation': defaultLocation,
-      'scheduledTime': scheduledTime.millisecondsSinceEpoch,
+      'scheduledWeeklyTime': scheduledWeeklyTime,
+      'studentIds': studentIds,
+      'currentLocalWorkshopId': currentLocalWorkshopId,
+      'creationTime':creationTime
     };
   }
 
   factory LocalCourse.fromMap(Map<String, dynamic> map) {
     return LocalCourse(
-      id: map['id'] as String,
-      globalCourseId: map['globalCourseId'] as String,
-      instructorId: map['instructorId'] as String,
-      campusId: map['campusId'] as String,
-      defaultLocation: map['defaultLocation'] as String,
-      scheduledTime:
-          DateTime.fromMillisecondsSinceEpoch(map['scheduledTime'] as int),
-    );
+        id: map['id'] as String,
+        globalCourseId: map['globalCourseId'] as String,
+        instructorId: List<String>.from((map['instructorId'] as List<String>)),
+        campusId: map['campusId'] as String,
+        defaultLocation: map['defaultLocation'] as String,
+        scheduledWeeklyTime: map['scheduledWeeklyTime'] as Timestamp,
+        studentIds: List<String>.from(
+          (map['studentIds'] as List<dynamic>),
+        ),
+        creationTime: map['creationTime'] as Timestamp,
+        currentLocalWorkshopId: map['currentLocalWorkshopId'] as String?);
   }
 
   String toJson() => json.encode(toMap());
@@ -74,19 +87,21 @@ class LocalCourse {
 
   @override
   String toString() {
-    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorId: $instructorId, campusId: $campusId, defaultLocation: $defaultLocation, scheduledTime: $scheduledTime)';
+    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorId: $instructorId, campusId: $campusId, defaultLocation: $defaultLocation, scheduledWeeklyTime: $scheduledWeeklyTime, studentIds: $studentIds)';
   }
 
   @override
   bool operator ==(covariant LocalCourse other) {
     if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
         other.globalCourseId == globalCourseId &&
-        other.instructorId == instructorId &&
+        listEquals(other.instructorId, instructorId) &&
         other.campusId == campusId &&
         other.defaultLocation == defaultLocation &&
-        other.scheduledTime == scheduledTime;
+        other.scheduledWeeklyTime == scheduledWeeklyTime &&
+        listEquals(other.studentIds, studentIds);
   }
 
   @override
@@ -96,6 +111,7 @@ class LocalCourse {
         instructorId.hashCode ^
         campusId.hashCode ^
         defaultLocation.hashCode ^
-        scheduledTime.hashCode;
+        scheduledWeeklyTime.hashCode ^
+        studentIds.hashCode;
   }
 }

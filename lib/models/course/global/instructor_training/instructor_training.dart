@@ -9,7 +9,6 @@ class InstructorTraining {
     required this.youtubeVideoLink,
   });
 
-
   InstructorTraining copyWith({
     String? id,
     String? youtubeVideoLink,
@@ -36,18 +35,18 @@ class InstructorTraining {
 
   String toJson() => json.encode(toMap());
 
-  factory InstructorTraining.fromJson(String source) => InstructorTraining.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory InstructorTraining.fromJson(String source) =>
+      InstructorTraining.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'InstructorTraining(id: $id, youtubeVideoLink: $youtubeVideoLink)';
+  String toString() =>
+      'InstructorTraining(id: $id, youtubeVideoLink: $youtubeVideoLink)';
 
   @override
   bool operator ==(covariant InstructorTraining other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.youtubeVideoLink == youtubeVideoLink;
+
+    return other.id == id && other.youtubeVideoLink == youtubeVideoLink;
   }
 
   @override
