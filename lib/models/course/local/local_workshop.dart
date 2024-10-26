@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 
 class LocalWorkshop {
   final String id;
@@ -9,7 +10,8 @@ class LocalWorkshop {
   final String localCourseId;
   final String? location;
   final Timestamp? scheduledTime;
-  final bool isDelivered ;
+  final bool isDelivered;
+  final List<String> attendedStudents;
   LocalWorkshop({
     required this.id,
     required this.globalWorkShopId,
@@ -17,12 +19,8 @@ class LocalWorkshop {
     this.location,
     this.scheduledTime,
     required this.isDelivered,
+    required this.attendedStudents,
   });
-  // questionResponses (in nested collection)
-  // student_reviews_for_local_workshop (in nested collection)
-  // attendees (in nested collection)
-
-
 
   LocalWorkshop copyWith({
     String? id,
@@ -30,7 +28,8 @@ class LocalWorkshop {
     String? localCourseId,
     String? location,
     Timestamp? scheduledTime,
-    bool? isDelivered ,
+    bool? isDelivered,
+    List<String>? attendedStudents,
   }) {
     return LocalWorkshop(
       id: id ?? this.id,
@@ -38,7 +37,8 @@ class LocalWorkshop {
       localCourseId: localCourseId ?? this.localCourseId,
       location: location ?? this.location,
       scheduledTime: scheduledTime ?? this.scheduledTime,
-      isDelivered:  isDelivered?? this.isDelivered,
+      isDelivered: isDelivered ?? this.isDelivered,
+      attendedStudents: attendedStudents ?? this.attendedStudents,
     );
   }
 
@@ -49,7 +49,8 @@ class LocalWorkshop {
       'localCourseId': localCourseId,
       'location': location,
       'scheduledTime': scheduledTime,
-      'isDelivered':isDelivered,
+      'isDelivered': isDelivered,
+      'attendedStudents': attendedStudents,
     };
   }
 
@@ -59,18 +60,45 @@ class LocalWorkshop {
       globalWorkShopId: map['globalWorkShopId'] as String,
       localCourseId: map['localCourseId'] as String,
       location: map['location'] != null ? map['location'] as String : null,
-      scheduledTime: map['scheduledTime'] as Timestamp?,
-      isDelivered:  map['isDelivered'] as bool,
+      scheduledTime: (map['scheduledTime'] as Timestamp),
+      isDelivered: map['isDelivered'] as bool,
+      attendedStudents:
+          List<String>.from((map['attendedStudents'] as List<dynamic>)),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory LocalWorkshop.fromJson(String source) => LocalWorkshop.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory LocalWorkshop.fromJson(String source) =>
+      LocalWorkshop.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'LocalWorkshop(id: $id, globalWorkShopId: $globalWorkShopId, localCourseId: $localCourseId, location: $location, scheduledTime: $scheduledTime, isDelivered : $isDelivered)';
+    return 'LocalWorkshop(id: $id, globalWorkShopId: $globalWorkShopId, localCourseId: $localCourseId, location: $location, scheduledTime: $scheduledTime, isDelivered: $isDelivered, attendedStudents: $attendedStudents)';
   }
 
+  @override
+  bool operator ==(covariant LocalWorkshop other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other.id == id &&
+        other.globalWorkShopId == globalWorkShopId &&
+        other.localCourseId == localCourseId &&
+        other.location == location &&
+        other.scheduledTime == scheduledTime &&
+        other.isDelivered == isDelivered &&
+        listEquals(other.attendedStudents, attendedStudents);
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        globalWorkShopId.hashCode ^
+        localCourseId.hashCode ^
+        location.hashCode ^
+        scheduledTime.hashCode ^
+        isDelivered.hashCode ^
+        attendedStudents.hashCode;
+  }
 }
