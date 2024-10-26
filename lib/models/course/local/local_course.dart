@@ -69,7 +69,7 @@ class LocalCourse {
     return LocalCourse(
         id: map['id'] as String,
         globalCourseId: map['globalCourseId'] as String,
-        instructorIds: List<String>.from((map['instructorIds'] as List<String>)),
+        instructorIds: List<String>.from((map['instructorIds'] as List<dynamic>)),
         campusId: map['campusId'] as String,
         defaultLocation: map['defaultLocation'] as String,
         scheduledWeeklyTime: map['scheduledWeeklyTime'] as Timestamp,
