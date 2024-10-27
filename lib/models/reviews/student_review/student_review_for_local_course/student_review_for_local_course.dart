@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roots_shared_lib/models/reviews/student_review/student_review.dart';
 
 class StudentReviewForLocalCourse extends StudentReview {
@@ -11,7 +12,7 @@ class StudentReviewForLocalCourse extends StudentReview {
     required super.id,
     required super.numOfStars,
     super.text,
-    required super.dateTime,
+    required super.creationTime,
   });
 
 
@@ -23,7 +24,7 @@ class StudentReviewForLocalCourse extends StudentReview {
     String? id,
     int? numOfStars,
     String? text,
-    DateTime? dateTime,
+    Timestamp? creationTime,
   }) {
     return StudentReviewForLocalCourse(
       localCourseId: localCourseId ?? this.localCourseId,
@@ -31,7 +32,7 @@ class StudentReviewForLocalCourse extends StudentReview {
       id: id ?? this.id,
       numOfStars: numOfStars ?? this.numOfStars,
       text: text ?? this.text,
-      dateTime: dateTime ?? this.dateTime,
+      creationTime: creationTime ?? this.creationTime,
     );
   }
 
@@ -42,7 +43,7 @@ class StudentReviewForLocalCourse extends StudentReview {
       'id': id,
       'numOfStars': numOfStars,
       'text': text,
-      'dateTime': dateTime.millisecondsSinceEpoch,
+      'creationTime': creationTime,
     };
   }
 
@@ -53,7 +54,7 @@ class StudentReviewForLocalCourse extends StudentReview {
       id: map['id'] as String,
       numOfStars: map['numOfStars'] as int,
       text: map['text'] != null ? map['text'] as String : null,
-      dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int),
+      creationTime: (map['creationTime'] as Timestamp),
     );
   }
 
@@ -63,7 +64,7 @@ class StudentReviewForLocalCourse extends StudentReview {
 
   @override
   String toString() {
-    return 'StudentReviewForLocalCourse(localCourseId: $localCourseId, studentId: $studentId, id: $id, numOfStars: $numOfStars, text: $text, dateTime: $dateTime)';
+    return 'StudentReviewForLocalCourse(localCourseId: $localCourseId, studentId: $studentId, id: $id, numOfStars: $numOfStars, text: $text, creationTime: $creationTime)';
   }
 
   @override
@@ -76,7 +77,7 @@ class StudentReviewForLocalCourse extends StudentReview {
       other.id == id &&
       other.numOfStars == numOfStars &&
       other.text == text &&
-      other.dateTime == dateTime;
+      other.creationTime == creationTime;
   }
 
   @override
@@ -86,6 +87,6 @@ class StudentReviewForLocalCourse extends StudentReview {
       id.hashCode ^
       numOfStars.hashCode ^
       text.hashCode ^
-      dateTime.hashCode;
+      creationTime.hashCode;
   }
 }

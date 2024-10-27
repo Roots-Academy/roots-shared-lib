@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roots_shared_lib/models/course/global/question/answer.dart';
 
 class QuestionResponse {
@@ -10,7 +11,7 @@ class QuestionResponse {
   final String questionId;
   final String studentId;
   final bool isAnswered;
-  final DateTime dateTime;
+  final DateTime creationTime;
   final bool isRemoved;
   final bool isInAppropriate;
   QuestionResponse({
@@ -20,7 +21,7 @@ class QuestionResponse {
     required this.questionId,
     required this.studentId,
     required this.isAnswered,
-    required this.dateTime,
+    required this.creationTime,
     required this.isRemoved,
     required this.isInAppropriate,
   });
@@ -33,7 +34,7 @@ class QuestionResponse {
       'questionId': questionId,
       'studentId': studentId,
       'isAnswered': isAnswered,
-      'dateTime': dateTime.millisecondsSinceEpoch,
+      'creationTime': creationTime.millisecondsSinceEpoch,
       'isRemoved': isRemoved,
       'isInAppropriate': isInAppropriate,
     };
@@ -48,7 +49,7 @@ class QuestionResponse {
       questionId: map['questionId'] as String,
       studentId: map['studentId'] as String,
       isAnswered: map['isAnswered'] as bool,
-      dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int),
+      creationTime: DateTime.fromMillisecondsSinceEpoch(map['creationTime']),
       isRemoved: map['isRemoved'] as bool,
       isInAppropriate: map['isInAppropriate'] as bool,
     );
@@ -61,35 +62,7 @@ class QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, answer: $answer, localWorkshopId: $localWorkshopId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, dateTime: $dateTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
-  }
-
-  @override
-  bool operator ==(covariant QuestionResponse other) {
-    if (identical(this, other)) return true;
-
-    return other.id == id &&
-        other.answer == answer &&
-        other.localWorkshopId == localWorkshopId &&
-        other.questionId == questionId &&
-        other.studentId == studentId &&
-        other.isAnswered == isAnswered &&
-        other.dateTime == dateTime &&
-        other.isRemoved == isRemoved &&
-        other.isInAppropriate == isInAppropriate;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        answer.hashCode ^
-        localWorkshopId.hashCode ^
-        questionId.hashCode ^
-        studentId.hashCode ^
-        isAnswered.hashCode ^
-        dateTime.hashCode ^
-        isRemoved.hashCode ^
-        isInAppropriate.hashCode;
+    return 'QuestionResponse(id: $id, answer: $answer, localWorkshopId: $localWorkshopId, questionId: $questionId, studentId: $studentId, isAnswered: $isAnswered, creationTime: $creationTime, isRemoved: $isRemoved, isInAppropriate: $isInAppropriate)';
   }
 
   QuestionResponse copyWith({
@@ -99,7 +72,7 @@ class QuestionResponse {
     String? questionId,
     String? studentId,
     bool? isAnswered,
-    DateTime? dateTime,
+    DateTime? creationTime,
     bool? isRemoved,
     bool? isInAppropriate,
   }) {
@@ -110,7 +83,7 @@ class QuestionResponse {
       questionId: questionId ?? this.questionId,
       studentId: studentId ?? this.studentId,
       isAnswered: isAnswered ?? this.isAnswered,
-      dateTime: dateTime ?? this.dateTime,
+      creationTime: creationTime ?? this.creationTime,
       isRemoved: isRemoved ?? this.isRemoved,
       isInAppropriate: isInAppropriate ?? this.isInAppropriate,
     );

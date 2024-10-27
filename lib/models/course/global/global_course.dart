@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import 'package:roots_shared_lib/models/course/global/instructor_training.dart';
+import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
 
