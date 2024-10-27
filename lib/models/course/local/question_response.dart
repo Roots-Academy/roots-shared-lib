@@ -11,7 +11,7 @@ class QuestionResponse {
   final String questionId;
   final String studentId;
   final bool isAnswered;
-  final Timestamp creationTime;
+  final DateTime creationTime;
   final bool isRemoved;
   final bool isInAppropriate;
   QuestionResponse({
@@ -34,7 +34,7 @@ class QuestionResponse {
       'questionId': questionId,
       'studentId': studentId,
       'isAnswered': isAnswered,
-      'creationTime': creationTime,
+      'creationTime': creationTime.millisecondsSinceEpoch,
       'isRemoved': isRemoved,
       'isInAppropriate': isInAppropriate,
     };
@@ -49,7 +49,7 @@ class QuestionResponse {
       questionId: map['questionId'] as String,
       studentId: map['studentId'] as String,
       isAnswered: map['isAnswered'] as bool,
-      creationTime: map['creationTime'] as Timestamp,
+      creationTime: DateTime.fromMillisecondsSinceEpoch(map['creationTime']),
       isRemoved: map['isRemoved'] as bool,
       isInAppropriate: map['isInAppropriate'] as bool,
     );
@@ -72,7 +72,7 @@ class QuestionResponse {
     String? questionId,
     String? studentId,
     bool? isAnswered,
-    Timestamp? creationTime,
+    DateTime? creationTime,
     bool? isRemoved,
     bool? isInAppropriate,
   }) {
