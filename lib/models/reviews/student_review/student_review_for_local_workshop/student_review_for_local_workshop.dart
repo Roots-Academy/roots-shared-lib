@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roots_shared_lib/models/reviews/student_review/student_review.dart';
 
 class StudentReviewForLocalWorkshop extends StudentReview {
@@ -9,14 +10,14 @@ class StudentReviewForLocalWorkshop extends StudentReview {
   // final String id;
   // final int numOfStars;
   // final String? text;
-  // final DateTime dateTime;
+  // final creationTime creationTime;
   StudentReviewForLocalWorkshop({
     required this.localWorkshopId,
     required super.studentId,
     required super.id,
     required super.numOfStars,
     super.text,
-    required super.dateTime,
+    required super.creationTime,
   });
 
   StudentReviewForLocalWorkshop copyWith({
@@ -25,7 +26,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
     String? id,
     int? numOfStars,
     String? text,
-    DateTime? dateTime,
+    Timestamp? creationTime,
   }) {
     return StudentReviewForLocalWorkshop(
       localWorkshopId: localWorkshopId ?? this.localWorkshopId,
@@ -33,7 +34,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
       id: id ?? this.id,
       numOfStars: numOfStars ?? this.numOfStars,
       text: text ?? this.text,
-      dateTime: dateTime ?? this.dateTime,
+      creationTime: creationTime ?? this.creationTime,
     );
   }
 
@@ -44,7 +45,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
       'id': id,
       'numOfStars': numOfStars,
       'text': text,
-      'dateTime': dateTime.millisecondsSinceEpoch,
+      'creationTime': creationTime,
     };
   }
 
@@ -55,7 +56,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
       id: map['id'] as String,
       numOfStars: map['numOfStars'] as int,
       text: map['text'] != null ? map['text'] as String : null,
-      dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int),
+      creationTime: (map['creationTime'] as Timestamp),
     );
   }
 
@@ -67,7 +68,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
 
   @override
   String toString() {
-    return 'StudentReviewForLocalWorkshop(localWorkshopId: $localWorkshopId, studentId: $studentId, id: $id, numOfStars: $numOfStars, text: $text, dateTime: $dateTime)';
+    return 'StudentReviewForLocalWorkshop(localWorkshopId: $localWorkshopId, studentId: $studentId, id: $id, numOfStars: $numOfStars, text: $text, creationTime: $creationTime)';
   }
 
   @override
@@ -79,7 +80,7 @@ class StudentReviewForLocalWorkshop extends StudentReview {
         other.id == id &&
         other.numOfStars == numOfStars &&
         other.text == text &&
-        other.dateTime == dateTime;
+        other.creationTime == creationTime;
   }
 
   @override
@@ -89,6 +90,6 @@ class StudentReviewForLocalWorkshop extends StudentReview {
         id.hashCode ^
         numOfStars.hashCode ^
         text.hashCode ^
-        dateTime.hashCode;
+        creationTime.hashCode;
   }
 }

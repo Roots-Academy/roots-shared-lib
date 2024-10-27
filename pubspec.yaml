@@ -8,6 +8,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
+
   flutter:
     sdk: flutter
   firebase_auth: ^3.4.0
@@ -17,6 +18,7 @@ dependencies:
   firebase_database: ^9.0.17
   cloud_firestore: ^3.2.0
 #  file_saver: ^0.2.14
+
 
 dev_dependencies:
   lints: ^4.0.0

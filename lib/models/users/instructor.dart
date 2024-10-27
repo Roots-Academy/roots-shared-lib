@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 
 import 'package:roots_shared_lib/models/users/roots_user.dart';
+
 enum InstructorType { contractor, volunteer }
 
 class Instructor extends RootsUser {
@@ -31,16 +33,16 @@ class Instructor extends RootsUser {
       required this.emergencyName,
       required this.emergencyNumber,
       required this.emergencyRelationship,
-      required this.campusIds,required this.instructorType});
+      required this.campusIds,
+      required this.instructorType});
 
-  @override
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'fullName': fullName,
       'email': email,
       'phoneNumber': phoneNumber,
-      'dob': dob.millisecondsSinceEpoch,
+      'dob': dob,
       'homeAddress': homeAddress,
       'isMale': isMale,
       'isActive': isActive,
@@ -61,7 +63,7 @@ class Instructor extends RootsUser {
       fullName: map['fullName'] as String,
       email: map['email'] as String,
       phoneNumber: map['phoneNumber'] as String,
-      dob: DateTime.fromMillisecondsSinceEpoch(map['dob'] as int),
+      dob: map['dob'] as Timestamp,
       homeAddress: map['homeAddress'] as String,
       isMale: map['isMale'] as bool?,
       isActive: map['isActive'] as bool,
@@ -72,7 +74,7 @@ class Instructor extends RootsUser {
       emergencyNumber: map['emergencyNumber'] as String,
       emergencyRelationship: map['emergencyRelationship'] as String,
       campusIds: List<String>.from((map['campusIds'] as List<dynamic>)),
-      instructorType:InstructorType.values[map['instructorType']], 
+      instructorType: InstructorType.values[map['instructorType']],
     );
   }
   Instructor copyWith({
@@ -80,7 +82,7 @@ class Instructor extends RootsUser {
     String? fullName,
     String? email,
     String? phoneNumber,
-    DateTime? dob,
+    Timestamp? dob,
     String? homeAddress,
     bool? isMale,
     bool? isActive,
@@ -94,24 +96,31 @@ class Instructor extends RootsUser {
     InstructorType? instructorType,
   }) {
     return Instructor(
-      id: id ?? super.id,                                  // Passed to the parent class
-      fullName: fullName ?? super.fullName,                // Passed to the parent class
-      email: email ?? super.email,                         // Passed to the parent class
-      phoneNumber: phoneNumber ?? super.phoneNumber,       // Passed to the parent class
-      dob: dob ?? super.dob,                               // Passed to the parent class
-      homeAddress: homeAddress ?? super.homeAddress,       // Passed to the parent class
-      isMale: isMale ?? super.isMale,                      // Passed to the parent class
-      isActive: isActive ?? this.isActive,                // Handled by Instructor class itself
-      bio: bio ?? this.bio,                               // Handled by Instructor class itself
-      emergencyEmail: emergencyEmail ?? this.emergencyEmail, // Handled by Instructor class itself
-      allergies: allergies ?? this.allergies,             // Handled by Instructor class itself
-      emergencyName: emergencyName ?? this.emergencyName, // Handled by Instructor class itself
-      emergencyNumber: emergencyNumber ?? this.emergencyNumber, // Handled by Instructor class itself
-      emergencyRelationship: emergencyRelationship ?? this.emergencyRelationship, // Handled by Instructor class itself
-      campusIds: campusIds ?? this.campusIds,             // Handled by Instructor class itself
-      instructorType: instructorType ?? this.instructorType, // Handled by Instructor class itself
+      id: id ?? super.id, // Passed to the parent class
+      fullName: fullName ?? super.fullName, // Passed to the parent class
+      email: email ?? super.email, // Passed to the parent class
+      phoneNumber:
+          phoneNumber ?? super.phoneNumber, // Passed to the parent class
+      dob: dob ?? super.dob, // Passed to the parent class
+      homeAddress:
+          homeAddress ?? super.homeAddress, // Passed to the parent class
+      isMale: isMale ?? super.isMale, // Passed to the parent class
+      isActive: isActive ?? this.isActive, // Handled by Instructor class itself
+      bio: bio ?? this.bio, // Handled by Instructor class itself
+      emergencyEmail: emergencyEmail ??
+          this.emergencyEmail, // Handled by Instructor class itself
+      allergies:
+          allergies ?? this.allergies, // Handled by Instructor class itself
+      emergencyName: emergencyName ??
+          this.emergencyName, // Handled by Instructor class itself
+      emergencyNumber: emergencyNumber ??
+          this.emergencyNumber, // Handled by Instructor class itself
+      emergencyRelationship: emergencyRelationship ??
+          this.emergencyRelationship, // Handled by Instructor class itself
+      campusIds:
+          campusIds ?? this.campusIds, // Handled by Instructor class itself
+      instructorType: instructorType ??
+          this.instructorType, // Handled by Instructor class itself
     );
   }
 }
-
-

@@ -6,6 +6,6 @@ abstract class StudentReview extends Review {
       {required super.id,
       required super.numOfStars,
       required super.text,
-      required super.dateTime,
+      required super.creationTime,
       required this.studentId});
 }
