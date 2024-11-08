@@ -15,8 +15,8 @@ dependencies:
   flutter_svg_provider: ^1.0.7
   cached_network_image: ^3.4.0
   marquee_widget: ^1.2.0
-  cloud_firestore: ^3.2.0
-  firebase_auth: ^3.4.0
+  cloud_firestore: ^5.0.4
+  firebase_auth: ^5.2.0
 
 
 
