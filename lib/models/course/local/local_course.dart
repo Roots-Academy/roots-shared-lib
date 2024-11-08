@@ -4,9 +4,11 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 
+import '../global/global_course.dart';
+
 class LocalCourse {
   final String id;
-  final String globalCourseId;
+  final GlobalCourse globalCourse;
   final List<String> instructorIds;
   final String campusId;
   final String defaultLocation;
@@ -18,7 +20,7 @@ class LocalCourse {
   //nested reviewsforcourse to be implemented (in nested collection)
   LocalCourse({
     required this.id,
-    required this.globalCourseId,
+    required this.globalCourse,
     required this.instructorIds,
     required this.campusId,
     required this.creationTime,
@@ -30,7 +32,7 @@ class LocalCourse {
 
   LocalCourse copyWith(
       {String? id,
-      String? globalCourseId,
+      GlobalCourse? globalCourse,
       List<String>? instructorIds,
       String? campusId,
       String? defaultLocation,
@@ -40,7 +42,7 @@ class LocalCourse {
       String? currentLocalWorkshopId}) {
     return LocalCourse(
         id: id ?? this.id,
-        globalCourseId: globalCourseId ?? this.globalCourseId,
+        globalCourse: globalCourse ?? this.globalCourse,
         instructorIds: instructorIds ?? this.instructorIds,
         campusId: campusId ?? this.campusId,
         creationTime: creationTime ?? this.creationTime,
@@ -54,7 +56,7 @@ class LocalCourse {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'globalCourseId': globalCourseId,
+      'globalCourse': globalCourse,
       'instructorIds': instructorIds,
       'campusId': campusId,
       'defaultLocation': defaultLocation,
@@ -68,7 +70,7 @@ class LocalCourse {
   factory LocalCourse.fromMap(Map<String, dynamic> map) {
     return LocalCourse(
         id: map['id'] as String,
-        globalCourseId: map['globalCourseId'] as String,
+        globalCourse: map['globalCourse'] as GlobalCourse,
         instructorIds: List<String>.from((map['instructorIds'] as List<dynamic>)),
         campusId: map['campusId'] as String,
         defaultLocation: map['defaultLocation'] as String,
@@ -87,7 +89,7 @@ class LocalCourse {
 
   @override
   String toString() {
-    return 'LocalCourse(id: $id, globalCourseId: $globalCourseId, instructorIds: $instructorIds, campusId: $campusId, defaultLocation: $defaultLocation, scheduledWeeklyTime: $scheduledWeeklyTime, studentIds: $studentIds)';
+    return 'LocalCourse(id: $id, globalCourse: $globalCourse, instructorIds: $instructorIds, campusId: $campusId, defaultLocation: $defaultLocation, scheduledWeeklyTime: $scheduledWeeklyTime, studentIds: $studentIds)';
   }
 
   @override
@@ -96,7 +98,7 @@ class LocalCourse {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
-        other.globalCourseId == globalCourseId &&
+        other.globalCourse == globalCourse &&
         listEquals(other.instructorIds, instructorIds) &&
         other.campusId == campusId &&
         other.defaultLocation == defaultLocation &&
@@ -107,7 +109,7 @@ class LocalCourse {
   @override
   int get hashCode {
     return id.hashCode ^
-        globalCourseId.hashCode ^
+        globalCourse.hashCode ^
         instructorIds.hashCode ^
         campusId.hashCode ^
         defaultLocation.hashCode ^
