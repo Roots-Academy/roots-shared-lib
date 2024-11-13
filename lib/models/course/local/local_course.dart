@@ -56,22 +56,24 @@ class LocalCourse {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'globalCourse': globalCourse,
+      'globalCourse': globalCourse.toMap(),
       'instructorIds': instructorIds,
       'campusId': campusId,
       'defaultLocation': defaultLocation,
       'scheduledWeeklyTime': scheduledWeeklyTime,
       'studentIds': studentIds,
       'currentLocalWorkshopId': currentLocalWorkshopId,
-      'creationTime':creationTime
+      'creationTime': creationTime
     };
   }
 
   factory LocalCourse.fromMap(Map<String, dynamic> map) {
     return LocalCourse(
         id: map['id'] as String,
-        globalCourse: map['globalCourse'] as GlobalCourse,
-        instructorIds: List<String>.from((map['instructorIds'] as List<dynamic>)),
+        globalCourse:
+            GlobalCourse.fromMap(map['globalCourse'] as Map<String, dynamic>),
+        instructorIds:
+            List<String>.from((map['instructorIds'] as List<dynamic>)),
         campusId: map['campusId'] as String,
         defaultLocation: map['defaultLocation'] as String,
         scheduledWeeklyTime: map['scheduledWeeklyTime'] as Timestamp,

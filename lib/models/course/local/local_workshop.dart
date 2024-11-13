@@ -50,7 +50,7 @@ class LocalWorkshop {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'globalWorkShop': globalWorkShop,
+      'globalWorkShop': globalWorkShop.toMap(),
       'localCourseId': localCourseId,
       'location': location,
       'scheduledTime': scheduledTime,
@@ -63,7 +63,8 @@ class LocalWorkshop {
   factory LocalWorkshop.fromMap(Map<String, dynamic> map) {
     return LocalWorkshop(
       id: map['id'] as String,
-      globalWorkShop: map['globalWorkShop'] as GlobalWorkshop,
+      globalWorkShop:
+          GlobalWorkshop.fromMap(map['globalWorkShop'] as Map<String, dynamic>),
       localCourseId: map['localCourseId'] as String,
       location: map['location'] != null ? map['location'] as String : null,
       presentingTime: map['presentingTime'] as Timestamp,
