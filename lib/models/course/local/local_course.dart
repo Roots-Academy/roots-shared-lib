@@ -3,11 +3,11 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:roots_shared_lib/models/course/course.dart';
 
 import '../global/global_course.dart';
 
-class LocalCourse {
-  final String id;
+class LocalCourse extends Course{
   final GlobalCourse globalCourse;
   final List<String> instructorIds;
   final String campusId;
@@ -19,7 +19,7 @@ class LocalCourse {
 
   //nested reviewsforcourse to be implemented (in nested collection)
   LocalCourse({
-    required this.id,
+    required super.id,
     required this.globalCourse,
     required this.instructorIds,
     required this.campusId,
