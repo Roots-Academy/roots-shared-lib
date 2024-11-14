@@ -68,7 +68,7 @@ class LocalWorkshop extends Workshop{
       localCourseId: map['localCourseId'] as String,
       location: map['location'] != null ? map['location'] as String : null,
       presentingTime: map['presentingTime'] as Timestamp,
-      scheduledTime: (map['scheduledTime'] as Timestamp),
+      scheduledTime: (map['scheduledTime'] as Timestamp?),
       isDelivered: map['isDelivered'] as bool,
       attendedStudents:
           List<String>.from((map['attendedStudents'] as List<dynamic>)),
