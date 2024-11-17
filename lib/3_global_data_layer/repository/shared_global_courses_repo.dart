@@ -1,10 +1,10 @@
 import 'package:roots_shared_lib/models/course/global/global_course.dart';
 
-import '../requests/firestore/global_courses_firestore.dart';
+import '../requests/firestore/shared_global_courses_firestore.dart';
 
-class GlobalCoursesRepo {
-  final GlobalCoursesFirestore _globalCoursesFirestore =
-      GlobalCoursesFirestore();
+class SharedGlobalCoursesRepo {
+  final SharedGlobalCoursesFirestore _globalCoursesFirestore =
+      SharedGlobalCoursesFirestore();
   Future<List<GlobalCourse>> getAllGlobalCourses() async {
     List<GlobalCourse> globalCourses = [];
     var querySnapShot = await _globalCoursesFirestore.getAllGlobalCourses();

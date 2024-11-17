@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../end_points/firebase_end_points.dart';
 
-class GlobalCoursesFirestore {
+class SharedGlobalCoursesFirestore {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   Future<QuerySnapshot<Map<String, dynamic>>> getAllGlobalCourses() {
     return _firebaseFirestore
