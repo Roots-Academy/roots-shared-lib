@@ -7,12 +7,12 @@ import 'dart:typed_data';
 import 'package:collection/collection.dart';
 
 import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
+import 'package:roots_shared_lib/models/course/workshop.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
 import 'question/question.dart';
 
-class GlobalWorkshop {
-  final String id;
+class GlobalWorkshop extends Workshop{
   final String title;
   final int index;
   final String globalCourseId;
@@ -22,7 +22,7 @@ class GlobalWorkshop {
   final UploadedFileData imageLink;
   final List<Question> questions;
   GlobalWorkshop({
-    required this.id,
+    required super.id,
     required this.globalCourseId,
     required this.title,
     required this.index,

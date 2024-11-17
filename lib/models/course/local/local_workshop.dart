@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:roots_shared_lib/models/course/global/global_workshop.dart';
+import 'package:roots_shared_lib/models/course/workshop.dart';
 
-class LocalWorkshop {
-  final String id;
+class LocalWorkshop extends Workshop{
   final GlobalWorkshop globalWorkShop;
   final Timestamp presentingTime;
   final String localCourseId;
@@ -15,7 +15,7 @@ class LocalWorkshop {
   final bool isDelivered;
   final List<String> attendedStudents;
   LocalWorkshop({
-    required this.id,
+    required super.id,
     required this.presentingTime,
     required this.globalWorkShop,
     required this.localCourseId,
@@ -50,7 +50,7 @@ class LocalWorkshop {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'globalWorkShop': globalWorkShop,
+      'globalWorkShop': globalWorkShop.toMap(),
       'localCourseId': localCourseId,
       'location': location,
       'scheduledTime': scheduledTime,
@@ -63,11 +63,12 @@ class LocalWorkshop {
   factory LocalWorkshop.fromMap(Map<String, dynamic> map) {
     return LocalWorkshop(
       id: map['id'] as String,
-      globalWorkShop: map['globalWorkShop'] as GlobalWorkshop,
+      globalWorkShop:
+          GlobalWorkshop.fromMap(map['globalWorkShop'] as Map<String, dynamic>),
       localCourseId: map['localCourseId'] as String,
       location: map['location'] != null ? map['location'] as String : null,
       presentingTime: map['presentingTime'] as Timestamp,
-      scheduledTime: (map['scheduledTime'] as Timestamp),
+      scheduledTime: (map['scheduledTime'] as Timestamp?),
       isDelivered: map['isDelivered'] as bool,
       attendedStudents:
           List<String>.from((map['attendedStudents'] as List<dynamic>)),

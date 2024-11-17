@@ -2,20 +2,20 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:roots_shared_lib/models/course/course.dart';
 
 import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
 
-class GlobalCourse {
-  final String id;
+class GlobalCourse extends Course {
   final String title;
   final String shortDescription;
   final UploadedFileData image;
   // nested instructor trainings of type InstructorTraining
 
   GlobalCourse({
-    required this.id,
+    required super.id,
     required this.title,
     required this.shortDescription,
     required this.image,
