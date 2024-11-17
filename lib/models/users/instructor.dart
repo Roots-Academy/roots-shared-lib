@@ -16,7 +16,7 @@ class Instructor extends RootsUser {
   final String emergencyName;
   final String emergencyNumber;
   final String emergencyRelationship;
-  final List<String> campusIds;
+  // final List<String> campusIds;
   final InstructorType instructorType;
   Instructor(
       {required super.id,
@@ -33,7 +33,7 @@ class Instructor extends RootsUser {
       required this.emergencyName,
       required this.emergencyNumber,
       required this.emergencyRelationship,
-      required this.campusIds,
+      // required this.campusIds,
       required this.instructorType});
 
   Map<String, dynamic> toMap() {
@@ -52,7 +52,7 @@ class Instructor extends RootsUser {
       'emergencyName': emergencyName,
       'emergencyNumber': emergencyNumber,
       'emergencyRelationship': emergencyRelationship,
-      "campusIds": campusIds,
+      // "campusIds": campusIds,
       "instructorType": instructorType.index
     };
   }
@@ -73,7 +73,7 @@ class Instructor extends RootsUser {
       emergencyName: map['emergencyName'] as String,
       emergencyNumber: map['emergencyNumber'] as String,
       emergencyRelationship: map['emergencyRelationship'] as String,
-      campusIds: List<String>.from((map['campusIds'] as List<dynamic>)),
+      // campusIds: List<String>.from((map['campusIds'] as List<dynamic>)),
       instructorType: InstructorType.values[map['instructorType']],
     );
   }
@@ -92,7 +92,7 @@ class Instructor extends RootsUser {
     String? emergencyName,
     String? emergencyNumber,
     String? emergencyRelationship,
-    List<String>? campusIds,
+    // List<String>? campusIds,
     InstructorType? instructorType,
   }) {
     return Instructor(
@@ -117,8 +117,8 @@ class Instructor extends RootsUser {
           this.emergencyNumber, // Handled by Instructor class itself
       emergencyRelationship: emergencyRelationship ??
           this.emergencyRelationship, // Handled by Instructor class itself
-      campusIds:
-          campusIds ?? this.campusIds, // Handled by Instructor class itself
+      // campusIds:
+      //     campusIds ?? this.campusIds, // Handled by Instructor class itself
       instructorType: instructorType ??
           this.instructorType, // Handled by Instructor class itself
     );
