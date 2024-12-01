@@ -7,10 +7,11 @@ import 'dart:typed_data';
 import 'package:collection/collection.dart';
 
 import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
+import 'package:roots_shared_lib/models/course/global/question/questions/questions_factory.dart';
 import 'package:roots_shared_lib/models/course/workshop.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
-import 'question/question.dart';
+import 'question/questions/models/question.dart';
 
 class GlobalWorkshop extends Workshop{
   final String title;
@@ -84,7 +85,7 @@ class GlobalWorkshop extends Workshop{
             UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
         questions: List<Question>.from(
           (map['questions'] as List<dynamic>).map<Question>(
-            (x) => Question.fromMap(x as Map<String, dynamic>),
+            (x) => QuestionFactory.fromJson(x as Map<String, dynamic>),
           ),
         ),
         globalCourseId: map['globalCourseId'] as String);

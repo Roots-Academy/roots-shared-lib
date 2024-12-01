@@ -2,7 +2,8 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:roots_shared_lib/models/course/global/question/answer.dart';
+
+import '../global/question/answers/models/answer.dart';
 
 class QuestionResponse {
   final String id;
