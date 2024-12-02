@@ -85,7 +85,7 @@ class GlobalWorkshop extends Workshop{
             UploadedFileData.fromMap(map['imageLink'] as Map<String, dynamic>),
         questions: List<Question>.from(
           (map['questions'] as List<dynamic>).map<Question>(
-            (x) => QuestionFactory.fromJson(x as Map<String, dynamic>),
+            (x) => QuestionFactory.fromMap(x as Map<String, dynamic>),
           ),
         ),
         globalCourseId: map['globalCourseId'] as String);

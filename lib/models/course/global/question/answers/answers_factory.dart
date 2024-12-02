@@ -5,7 +5,7 @@ import 'models/multiple_choice_answer.dart';
 import 'models/open_answer.dart';
 
 class AnswerFactory {
-  static Answer fromJson(Map<String, dynamic> json) {
+  static Answer fromMap(Map<String, dynamic> json) {
     switch (json['type']) {
       case AnswersTypes.multipleChoice:
         return MultipleChoiceAnswer.fromMap(json);

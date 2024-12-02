@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:roots_shared_lib/models/course/global/question/answers/answers_factory.dart';
 
 import '../global/question/answers/models/answer.dart';
 
@@ -44,7 +45,7 @@ class QuestionResponse {
   factory QuestionResponse.fromMap(Map<String, dynamic> map) {
     return QuestionResponse(
       id: map['id'] as String,
-      answer: Answer.fromMap((map['answer'] as Map<dynamic, dynamic>)
+      answer: AnswerFactory.fromMap((map['answer'] as Map<dynamic, dynamic>)
           .map((key, value) => MapEntry(key.toString(), value))),
       localWorkshopId: map['localWorkshopId'] as String,
       questionId: map['questionId'] as String,
