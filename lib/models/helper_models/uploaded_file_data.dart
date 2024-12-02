@@ -22,7 +22,7 @@ class UploadedFileData {
   getExtention() => path.split('.').last.toLowerCase();
 
   /// Function to detect the file extension from bytes
-  String? getFileExtensionFromBytes(Uint8List bytes) {
+  static String? getFileExtensionFromBytes(Uint8List bytes) {
     // Define a map of file signatures (magic numbers) to file extensions
     const Map<String, String> magicNumbers = {
       '25504446': 'pdf', // PDF
