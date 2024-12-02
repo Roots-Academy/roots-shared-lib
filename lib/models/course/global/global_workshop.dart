@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 
-import 'package:roots_shared_lib/models/course/global/instructor_training/instructor_training.dart';
+import 'package:roots_shared_lib/models/instructor_training/instructor_training.dart';
 import 'package:roots_shared_lib/models/course/global/question/questions/questions_factory.dart';
 import 'package:roots_shared_lib/models/course/workshop.dart';
 
