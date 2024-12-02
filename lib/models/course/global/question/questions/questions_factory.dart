@@ -4,7 +4,7 @@ import 'models/question.dart';
 import 'question_types.dart';
 
 class QuestionFactory {
-  static Question fromJson(Map<String, dynamic> json) {
+  static Question fromMap(Map<String, dynamic> json) {
     switch (json['type']) {
       case QuestionTypes.openAnswer:
         return OpenAnswerQuestion.fromMap(json);

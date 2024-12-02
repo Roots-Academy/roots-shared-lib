@@ -12,7 +12,4 @@ abstract class Question {
       required this.globalWorkshopId,
       required this.slideNo});
   Map<String, dynamic> toMap();
-  factory Question.fromMap(Map<String, dynamic> map) {
-    throw UnimplementedError("fromMap is not implemented in Answer");
-  }
 }
