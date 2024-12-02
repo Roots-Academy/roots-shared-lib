@@ -31,7 +31,6 @@ class OpenAnswer extends Answer {
       'type': type,
     };
   }
-  @override
 
   factory OpenAnswer.fromMap(Map<String, dynamic> map) {
     return OpenAnswer(

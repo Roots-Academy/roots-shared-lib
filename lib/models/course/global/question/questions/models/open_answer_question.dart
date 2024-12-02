@@ -36,7 +36,6 @@ class OpenAnswerQuestion extends Question {
       'slideNo': slideNo,
     };
   }
-@override
   factory OpenAnswerQuestion.fromMap(Map<String, dynamic> map) {
     return OpenAnswerQuestion(
       id: map['id'] as String,

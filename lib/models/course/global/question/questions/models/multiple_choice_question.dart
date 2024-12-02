@@ -51,7 +51,6 @@ class MultipleChoiceQuestion extends Question {
     };
   }
 
-  @override
   factory MultipleChoiceQuestion.fromMap(Map<String, dynamic> map) {
     return MultipleChoiceQuestion(
       options: List<String>.from((map['options'] as List<dynamic>)),

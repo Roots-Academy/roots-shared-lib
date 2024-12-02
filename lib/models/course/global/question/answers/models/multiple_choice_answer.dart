@@ -31,7 +31,6 @@ class MultipleChoiceAnswer extends Answer {
       'type': type,
     };
   }
-  @override
   factory MultipleChoiceAnswer.fromMap(Map<String, dynamic> map) {
     return MultipleChoiceAnswer(
       selectedOption: map['selectedOption'] as String,
