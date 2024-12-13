@@ -2,11 +2,9 @@
 // import 'package:roots_octopus/3_data_layer/models/static/quesion.dart';
 
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 
-import 'package:roots_shared_lib/models/instructor_training/instructor_training.dart';
 import 'package:roots_shared_lib/models/course/global/question/questions/questions_factory.dart';
 import 'package:roots_shared_lib/models/course/workshop.dart';
 

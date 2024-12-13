@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
 import 'package:roots_shared_lib/models/course/course.dart';
 
-import 'package:roots_shared_lib/models/instructor_training/instructor_training.dart';
 
 import '../../helper_models/uploaded_file_data.dart';
 

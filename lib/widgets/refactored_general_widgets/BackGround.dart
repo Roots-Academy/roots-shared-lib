@@ -26,6 +26,5 @@ class Background extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

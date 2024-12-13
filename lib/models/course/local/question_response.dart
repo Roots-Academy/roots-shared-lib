@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roots_shared_lib/models/course/global/question/answers/answers_factory.dart';
 
 import '../global/question/answers/models/answer.dart';

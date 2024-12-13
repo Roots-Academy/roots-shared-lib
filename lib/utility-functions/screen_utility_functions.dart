@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'dart:js' as js;
-import 'dart:html' as html;
-import 'dart:ui' as ui;
-import 'dart:html' as html;
 
 class ScreenUtilityFunctions {
   static final ScreenUtilityFunctions _instance =

@@ -10,14 +10,14 @@ class CustomTextField extends StatelessWidget {
   TextEditingController? textController;
 
   CustomTextField({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.onChanged,
     required this.obscureText,
     this.onSubmitted,
     this.canEdit,
     this.textController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

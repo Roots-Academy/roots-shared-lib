@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roots_shared_lib/end_points/firebase_end_points.dart';
-import 'package:roots_shared_lib/models/campus.dart';
 
 class SharedCampusesFirestore {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
