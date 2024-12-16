@@ -10,8 +10,8 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widthOrHeight?? 100,
-      height: widthOrHeight ?? 100,
+      width: widthOrHeight?? 75,
+      height: widthOrHeight ?? 75,
       child: Center(
         child: CircularProgressIndicator(
           color: color ?? AppColors.tealColour,
