@@ -42,7 +42,9 @@ class LocalCourse extends Course {
       Timestamp? scheduledWeeklyTime,
       List<String>? studentIds,
       Timestamp? creationTime,
-      String? currentLocalWorkshopId}) {
+      String? currentLocalWorkshopId,
+      Timestamp? startDateTime,
+      Timestamp? endDateTime}) {
     return LocalCourse(
         id: id ?? this.id,
         globalCourse: globalCourse ?? this.globalCourse,
@@ -54,8 +56,8 @@ class LocalCourse extends Course {
         studentIds: studentIds ?? this.studentIds,
         currentLocalWorkshopId:
             currentLocalWorkshopId ?? this.currentLocalWorkshopId,
-        startDateTime: startDateTime,
-        endDateTime: endDateTime);
+        startDateTime: startDateTime ?? this.startDateTime,
+        endDateTime: endDateTime ?? this.endDateTime);
   }
 
   Map<String, dynamic> toMap() {
